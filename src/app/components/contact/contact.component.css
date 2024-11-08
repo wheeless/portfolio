@@ -1,0 +1,92 @@
+.page {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 128px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    max-width: 600px;
+    width: 100%;
+}
+
+.content h1 {
+    margin-bottom: 1em;
+}
+
+.content p {
+    margin: 1em 0;
+    line-height: 1.6;
+}
+
+.contact-form {
+    margin-top: 2em;
+}
+
+.form-group {
+    margin-bottom: 1.5em;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: 500;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 0.75em;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #666;
+}
+
+input.invalid,
+textarea.invalid {
+    border-color: #ff4444;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 0.75em 2em;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover:not(:disabled) {
+    background-color: #444;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.response-message {
+    margin-top: 1.5em;
+    padding: 1em;
+    background-color: #4caf50; /* Changed to a pleasant green color */
+    color: white; /* Added white text color */
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .page {
+        padding: 64px 20px;
+    }
+}

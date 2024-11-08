@@ -1,0 +1,67 @@
+<div class="page">
+    <div class="content">
+        <h1>Contact Me</h1>
+        <p>Feel free to reach out using the form below.</p>
+        <p>Done contacting me? Check out my <a routerLink="/projects">projects</a>.</p>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    formControlName="name"
+                    [class.invalid]="
+                        contactForm.get('name')?.invalid && contactForm.get('name')?.touched
+                    "
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    formControlName="email"
+                    [class.invalid]="
+                        contactForm.get('email')?.invalid && contactForm.get('email')?.touched
+                    "
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input
+                    type="text"
+                    id="subject"
+                    formControlName="subject"
+                    [class.invalid]="
+                        contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched
+                    "
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                    id="message"
+                    formControlName="message"
+                    rows="5"
+                    [class.invalid]="
+                        contactForm.get('message')?.invalid && contactForm.get('message')?.touched
+                    "
+                ></textarea>
+            </div>
+
+            <button type="submit" [disabled]="contactForm.invalid || isSubmitting">
+                {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+            </button>
+        </form>
+
+        @if (responseMessage) {
+        <div class="response-message">
+            {{ responseMessage }}
+        </div>
+        }
+    </div>
+</div>
