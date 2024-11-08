@@ -6,6 +6,8 @@ interface ContactForm {
     name: string;
     email: string;
     message: string;
+    subject: string;
+    phoneNumber: string;
 }
 
 interface ContactResponse {
