@@ -78,7 +78,7 @@
                             }
                         ],
                         "styles": ["src/styles.css"],
-                        "scripts": []
+                        "scripts": ["./node_modules/mailgo/dist/mailgo.min.js"]
                     }
                 }
             }
