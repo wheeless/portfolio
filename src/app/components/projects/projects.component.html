@@ -1,4 +1,10 @@
 <div class="page">
+    <div class="content">
+        <p>
+            Done viewing my projects? <a routerLink="/">Go back home</a> or
+            <a routerLink="/contact">contact me</a>.
+        </p>
+    </div>
     <div class="projects-grid">
         @for (project of projects; track project.name) {
         <div class="project-card">
@@ -19,8 +25,5 @@
             </div>
         </div>
         }
-    </div>
-    <div class="content">
-        <p>Done viewing my projects? <a routerLink="/">Go back home</a></p>
     </div>
 </div>

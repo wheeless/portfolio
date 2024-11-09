@@ -2,7 +2,10 @@
     <div class="content">
         <h1>Contact Me</h1>
         <p>Feel free to reach out using the form below.</p>
-        <p>Done contacting me? Check out my <a routerLink="/projects">projects</a>.</p>
+        <p>
+            Done contacting me? Check out my <a routerLink="/projects">projects</a> or
+            <a routerLink="/">go back home</a>.
+        </p>
 
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
             <div class="form-group">
