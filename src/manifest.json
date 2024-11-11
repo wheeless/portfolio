@@ -1,0 +1,26 @@
+{
+    "name": "Kyle W. Wheeless - Software Engineer",
+    "short_name": "Kyle Wheeless",
+    "description": "Professional software engineer and technology enthusiast sharing insights on coding, web development, and tech solutions.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "icons": [
+        {
+            "src": "https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/32",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/192",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/512",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

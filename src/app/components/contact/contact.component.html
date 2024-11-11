@@ -1,13 +1,20 @@
-<div class="page">
-    <div class="content">
-        <h1>Contact Me</h1>
-        <p>Feel free to reach out using the form below.</p>
+<main class="page" role="main">
+    <div class="content" role="contentinfo">
+        <h1 tabindex="0">Contact Me</h1>
+        <p tabindex="0">Feel free to reach out using the form below.</p>
         <p>
-            Done contacting me? Check out my <a routerLink="/projects">projects</a> or
-            <a routerLink="/">go back home</a>.
+            Done contacting me? Check out my
+            <a routerLink="/projects" aria-label="View my projects">projects</a> or
+            <a routerLink="/" aria-label="Return to home page">go back home</a>.
         </p>
 
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+        <form
+            [formGroup]="contactForm"
+            (ngSubmit)="onSubmit()"
+            class="contact-form"
+            role="form"
+            aria-label="Contact form"
+        >
             <div class="form-group">
                 <label for="name">Name</label>
                 <input
@@ -17,7 +24,17 @@
                     [class.invalid]="
                         contactForm.get('name')?.invalid && contactForm.get('name')?.touched
                     "
+                    aria-required="true"
+                    [attr.aria-invalid]="
+                        contactForm.get('name')?.invalid && contactForm.get('name')?.touched
+                    "
+                    aria-describedby="name-error"
                 />
+                @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+                <span id="name-error" class="error-message" role="alert"
+                    >Please enter your name</span
+                >
+                }
             </div>
 
             <div class="form-group">
@@ -29,7 +46,17 @@
                     [class.invalid]="
                         contactForm.get('email')?.invalid && contactForm.get('email')?.touched
                     "
+                    aria-required="true"
+                    [attr.aria-invalid]="
+                        contactForm.get('email')?.invalid && contactForm.get('email')?.touched
+                    "
+                    aria-describedby="email-error"
                 />
+                @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+                <span id="email-error" class="error-message" role="alert"
+                    >Please enter a valid email address</span
+                >
+                }
             </div>
 
             <div class="form-group">
@@ -41,7 +68,17 @@
                     [class.invalid]="
                         contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched
                     "
+                    aria-required="true"
+                    [attr.aria-invalid]="
+                        contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched
+                    "
+                    aria-describedby="subject-error"
                 />
+                @if (contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched) {
+                <span id="subject-error" class="error-message" role="alert"
+                    >Please enter a subject</span
+                >
+                }
             </div>
 
             <div class="form-group">
@@ -53,18 +90,32 @@
                     [class.invalid]="
                         contactForm.get('message')?.invalid && contactForm.get('message')?.touched
                     "
+                    aria-required="true"
+                    [attr.aria-invalid]="
+                        contactForm.get('message')?.invalid && contactForm.get('message')?.touched
+                    "
+                    aria-describedby="message-error"
                 ></textarea>
+                @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+                <span id="message-error" class="error-message" role="alert"
+                    >Please enter your message</span
+                >
+                }
             </div>
 
-            <button type="submit" [disabled]="contactForm.invalid || isSubmitting">
+            <button
+                type="submit"
+                [disabled]="contactForm.invalid || isSubmitting"
+                aria-label="Submit contact form"
+            >
                 {{ isSubmitting ? 'Sending...' : 'Send Message' }}
             </button>
         </form>
 
         @if (responseMessage) {
-        <div class="response-message">
+        <div class="response-message" role="alert" aria-live="polite">
             {{ responseMessage }}
         </div>
         }
     </div>
-</div>
+</main>

@@ -18,7 +18,7 @@ interface ContactResponse {
     providedIn: 'root',
 })
 export class ContactService {
-    private readonly apiUrl = 'https://api.avernix.com/api/v2/mail/form?mail_token='; // Replace with your actual endpoint
+    private readonly apiUrl = 'https://api.avernix.com/api/v2/mail/form?mail_token=';
     private readonly mail_token = 'Tyq7-YXMiADdPpZa9ig1';
     constructor(private http: HttpClient) {}
 

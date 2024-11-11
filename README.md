@@ -7,7 +7,7 @@ A modern, Angular-based portfolio website showcasing my professional work, skill
 
 ## ✨ Features
 - Modern, responsive design
-- Project showcase with detailed case studies
+- Project showcase with links to live projects
 - Responsive contact form
 
 ## 🛠️ Built With

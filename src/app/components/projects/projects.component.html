@@ -1,17 +1,18 @@
-<div class="page">
-    <div class="content">
-        <p>
-            Done viewing my projects? <a routerLink="/">Go back home</a> or
-            <a routerLink="/contact">contact me</a>.
+<main class="page" role="main">
+    <div class="content" role="contentinfo">
+        <p tabindex="0">
+            Done viewing my projects?
+            <a routerLink="/" aria-label="Return to home page">Go back home</a> or
+            <a routerLink="/contact" aria-label="Navigate to contact page">contact me</a>.
         </p>
     </div>
-    <div class="projects-grid">
+    <div class="projects-grid" role="list" aria-label="Project showcase grid">
         @for (project of projects; track project.name) {
-        <div class="project-card">
+        <article class="project-card" role="listitem" tabindex="0">
             <div class="project-image">
                 <img
                     [ngSrc]="project.image"
-                    [alt]="project.name"
+                    [alt]="project.name + ' project thumbnail'"
                     width="300"
                     height="200"
                     class="responsive-image"
@@ -19,11 +20,17 @@
             </div>
             <div class="project-content">
                 <h2>
-                    <a [href]="project.link" target="_blank">{{ project.name }}</a>
+                    <a
+                        [href]="project.link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        [attr.aria-label]="'View ' + project.name + ' project (opens in new tab)'"
+                        >{{ project.name }}</a
+                    >
                 </h2>
                 <p>{{ project.description }}</p>
             </div>
-        </div>
+        </article>
         }
     </div>
-</div>
+</main>

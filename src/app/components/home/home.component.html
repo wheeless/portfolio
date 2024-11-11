@@ -1,45 +1,63 @@
-<div class="page">
+<main class="page" role="main">
     <div class="me">
         <img
             [ngSrc]="me"
-            alt=""
+            alt="Kyle Wheeless professional headshot"
             [width]="500"
             [height]="500"
             class="responsive-image"
             priority="true"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            ng-img="true"
         />
     </div>
-    <div class="content">
-        <h1>{{ title }}</h1>
-        <p>Hello, how are you?</p>
+    <div class="content" role="contentinfo">
+        <h1 tabindex="0">{{ title }}</h1>
+        <p tabindex="0">Greetings! I'm Kyle, and I'm glad you're here.</p>
         <p>
             You can view my github by clicking this button:
-            <a href="https://github.com/wheeless" target="_blank" rel="noopener noreferrer"
+            <a
+                href="https://github.com/wheeless"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit my GitHub profile (opens in new tab)"
                 >Github</a
             >.
         </p>
         <p>
             My projects are hosted here, you can view them by clicking this button:
-            <a routerLink="/projects">Projects</a>
+            <a routerLink="/projects" aria-label="View my projects">Projects</a>
         </p>
-        <p>
+        <p tabindex="0">
             I'm a software engineer with a passion for building products that help people live
             better lives.
         </p>
         <p>
             I own a small software company called
-            <a href="https://www.avernix.com" target="_blank" rel="noopener noreferrer"
+            <a
+                href="https://www.avernix.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Avernix Technologies website (opens in new tab)"
                 >Avernix Technologies</a
             >.
         </p>
         <p>
             You can contact me by clicking this button:
-            <a routerLink="/contact">Contact</a>
+            <a routerLink="/contact" aria-label="Go to contact page">Contact</a>
         </p>
         <p>
             Or, you can email me by clicking this button:
-            <a href="#mailgo" data-address="me" data-domain="kylewheeless.com">Email</a>
+            <a
+                href="#mailgo"
+                data-address="me"
+                data-domain="kylewheeless.com"
+                aria-label="Send me an email"
+                >Email</a
+            >
         </p>
-        <p>Thank you for visiting!</p>
+        <p tabindex="0">Thank you for visiting!</p>
     </div>
-</div>
+</main>
