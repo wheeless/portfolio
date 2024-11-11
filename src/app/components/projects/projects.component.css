@@ -10,6 +10,12 @@
     gap: 32px;
 }
 
+.project-card-link {
+    text-decoration: none;
+    color: inherit;
+    /* display: block; */
+}
+
 .project-card {
     border: 1px solid #ccc;
     border-radius: 8px;

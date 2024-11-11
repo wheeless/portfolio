@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
 })
 export class HomeComponent {
     public readonly me =
-        'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/a1d3c2a4-e8e7-4697-cead-365630bc7e00/public';
+        'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/74e0cd1b-64d4-49f3-a09c-64ac029fe500/public';
     public readonly title = 'Kyle W. Wheeless';
     public readonly avernix =
         'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public';
