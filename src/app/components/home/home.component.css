@@ -58,3 +58,14 @@
     max-width: 100%;
     height: auto;
 }
+
+.external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.external-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
