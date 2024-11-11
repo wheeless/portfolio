@@ -16,4 +16,11 @@ export class AppComponent {
     public readonly title = 'Kyle W. Wheeless';
     public readonly avernix =
         'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public';
+
+    ngOnInit() {
+        console.log('Whatcha doin? Well, since you are here...');
+        console.log('https://kylewheeless.com/contact');
+        console.log('https://github.com/wheeless');
+        console.log('https://www.linkedin.com/in/kylewheeless');
+    }
 }

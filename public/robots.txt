@@ -1,0 +1,10 @@
+# https://kylewheeless.com/robots.txt
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://kylewheeless.com/sitemap.xml
+
+# Disallow specific paths if needed
+# Disallow: /private/
+# Disallow: /admin/ 

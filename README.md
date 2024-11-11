@@ -9,6 +9,12 @@ A modern, Angular-based portfolio website showcasing my professional work, skill
 - Modern, responsive design
 - Project showcase with links to live projects
 - Responsive contact form
+- Typing animation on home page
+- Mailgo for email link
+- Accessibility features including ARIA attributes and keyboard navigation
+- Form validation and error handling
+- Form submission to Avernix's contact form API
+- 
 
 ## 🛠️ Built With
 - Angular 18
