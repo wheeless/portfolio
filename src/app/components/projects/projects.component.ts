@@ -21,7 +21,7 @@ export class ProjectsComponent {
         {
             name: 'Avernix Technologies',
             description: 'Homepage for my software company.',
-            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public',
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/10fdbb1f-506c-40c2-5a2c-6d68e735e600/public',
             link: 'https://avernix.com',
         },
         {
@@ -33,7 +33,7 @@ export class ProjectsComponent {
         {
             name: 'NonPro AdCo',
             description: 'Website built for NonPro AdCo.',
-            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/5c94b706-f4c7-428f-485b-cbe7a66e6f00/public',
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/5ca1d04d-fd84-44bb-c3dc-371597997000/public',
             link: 'https://nonproadco.avnxapp.com',
         },
 
