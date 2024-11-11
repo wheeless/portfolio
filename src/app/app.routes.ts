@@ -5,11 +5,11 @@ import { ContactComponent } from './components/contact/contact.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
-    // {
-    //     path: 'home',
-    //     redirectTo: '',
-    //     pathMatch: 'full',
-    // },
+    {
+        path: 'home',
+        redirectTo: '',
+        pathMatch: 'full',
+    },
     {
         path: '',
         component: HomeComponent,
@@ -21,6 +21,10 @@ export const routes: Routes = [
     {
         path: 'contact',
         component: ContactComponent,
+    },
+    {
+        path: '**/*.+(jpg|jpeg|png|gif|ico|css|js|pdf|txt)',
+        redirectTo: '404',
     },
     {
         path: '**',
