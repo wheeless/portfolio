@@ -17,7 +17,7 @@ interface Project {
     styleUrl: './projects.component.css',
 })
 export class ProjectsComponent {
-    public readonly projects: Project[] = [
+    public readonly allProjects: Project[] = [
         {
             name: 'Avernix Technologies',
             description: 'Homepage for my software company.',
@@ -43,5 +43,50 @@ export class ProjectsComponent {
             image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/c8013b30-459c-4e09-5be2-2705460e1100/public',
             link: 'https://lichsouls.com/dice',
         },
+        {
+            name: 'Blackfox Gaming',
+            description:
+                'Game servers, discord bot, and more. Most of the functionality is server-side.',
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/aab8d7e2-2e34-44d8-16d5-ab0cf1c9d900/public',
+            link: 'https://discord.gg/2cnCzun',
+        },
+        {
+            name: 'Frankie Goldie',
+            description:
+                'Website to display all of the authors books, links to purchase, and more.',
+            image: 'https://avernix.com/cdn-cgi/imagedelivery/eFpPUO445KI7hjnFeTxrJQ/a8eaa2d4-9d9a-42c4-a837-bbdbe0437d00/public',
+            link: 'https://frankiegoldieandfriends.com',
+        },
     ];
+
+    public currentPage = 1;
+    public itemsPerPage = 6;
+    public totalPages = Math.ceil(this.allProjects.length / this.itemsPerPage);
+
+    get projects(): Project[] {
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        return this.allProjects.slice(startIndex, startIndex + this.itemsPerPage);
+    }
+
+    nextPage(): void {
+        if (this.currentPage < this.totalPages) {
+            this.currentPage++;
+        }
+    }
+
+    previousPage(): void {
+        if (this.currentPage > 1) {
+            this.currentPage--;
+        }
+    }
+
+    goToPage(page: number): void {
+        if (page >= 1 && page <= this.totalPages) {
+            this.currentPage = page;
+        }
+    }
+
+    getPageNumbers() {
+        return Array.from({ length: this.totalPages }, (_, i) => i);
+    }
 }

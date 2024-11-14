@@ -22,6 +22,7 @@
     overflow: hidden;
     filter: grayscale(80%);
     transition: transform 0.2s ease-in-out, filter 0.3s ease;
+    max-width: 378px;
 }
 
 .project-card:hover {
@@ -71,5 +72,42 @@
 
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+}
+
+.pagination button {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    background: #f0f0f0;
+}
+
+.pagination button.active {
+    background: #333;
+    color: white;
+    border-color: #333;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .pagination {
+        flex-wrap: wrap;
     }
 }

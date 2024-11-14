@@ -43,4 +43,26 @@
         </a>
         }
     </div>
+
+    @if (totalPages > 1) {
+    <nav class="pagination" aria-label="Projects pagination">
+        <button (click)="previousPage()" [disabled]="currentPage === 1" aria-label="Previous page">
+            Previous
+        </button>
+
+        @for (page of getPageNumbers(); track page) {
+        <button
+            (click)="goToPage(page + 1)"
+            [class.active]="currentPage === page + 1"
+            [attr.aria-current]="currentPage === page + 1 ? 'page' : null"
+        >
+            {{ page }}
+        </button>
+        }
+
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages" aria-label="Next page">
+            Next
+        </button>
+    </nav>
+    }
 </main>
