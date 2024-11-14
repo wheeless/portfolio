@@ -25,7 +25,7 @@ export class ProjectsComponent {
             link: 'https://avernix.com',
         },
         {
-            name: 'Client Portal',
+            name: 'Avernix Technologies Client Portal',
             description: 'A portal for clients to view their respective services.',
             image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public',
             link: 'https://client.avernix.com',
@@ -36,7 +36,12 @@ export class ProjectsComponent {
             image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/5ca1d04d-fd84-44bb-c3dc-371597997000/public',
             link: 'https://nonproadco.avnxapp.com',
         },
-
-        // Add more projects as needed
+        {
+            name: 'Lich Souls Gaming',
+            description:
+                'Website, game servers, discord bot, and more. Most of the functionality is server-side.',
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/c8013b30-459c-4e09-5be2-2705460e1100/public',
+            link: 'https://lichsouls.com/dice',
+        },
     ];
 }
