@@ -71,7 +71,8 @@ export class ProjectsComponent {
         },
         {
             name: 'Middleware',
-            description: 'A poorly named library for express, because it includes helpers as well.',
+            description:
+                'A poorly named middleware library for express, because it includes helpers as well.',
             image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public',
             link: 'https://npmjs.com/package/@trarn/middleware',
         },
