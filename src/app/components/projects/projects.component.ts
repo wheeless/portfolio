@@ -57,6 +57,24 @@ export class ProjectsComponent {
             image: 'https://avernix.com/cdn-cgi/imagedelivery/eFpPUO445KI7hjnFeTxrJQ/a8eaa2d4-9d9a-42c4-a837-bbdbe0437d00/public',
             link: 'https://frankiegoldieandfriends.com',
         },
+        {
+            name: 'Express Version Middleware',
+            description: 'Middleware for easy versioning of express applications/apis.',
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public',
+            link: 'https://npmjs.com/package/@trarn/express-version-middleware',
+        },
+        {
+            name: 'Logger',
+            description: 'Functional logger written in typescript. Easy to use and configure.',
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public',
+            link: 'https://npmjs.com/package/@trarn/logger',
+        },
+        {
+            name: 'Middleware',
+            description: 'A poorly named library for express, because it includes helpers as well.',
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public',
+            link: 'https://npmjs.com/package/@trarn/middleware',
+        },
     ];
 
     public currentPage = 1;
