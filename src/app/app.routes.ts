@@ -65,6 +65,10 @@ export const routes: Routes = [
         component: ExternalRedirectComponent,
     },
     {
+        path: 'four-oh-four',
+        component: NotFoundComponent,
+    },
+    {
         path: '**',
         redirectTo: '404',
     },
