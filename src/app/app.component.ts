@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { NgOptimizedImage } from '@angular/common';
-
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, NgOptimizedImage],
+    imports: [RouterOutlet],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
 })
@@ -20,7 +18,7 @@ export class AppComponent {
     ngOnInit() {
         console.log('Whatcha doin? Well, since you are here...');
         console.log('https://kylewheeless.com/contact');
-        console.log('https://github.com/wheeless');
-        console.log('https://www.linkedin.com/in/kylewheeless');
+        console.log('https://kylewheeless.com/github');
+        console.log('https://kylewheeless.com/linkedin');
     }
 }
