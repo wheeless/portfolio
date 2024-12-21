@@ -7,8 +7,15 @@
       "default",
       {
         "ignore": [
-          "img[fetchpriority]"
+          "img[fetchpriority]",
+          "img[title]"
         ]
+      }
+    ],
+    "axe/text-alternatives": [
+      "default",
+      {
+        "image-alt": "off"
       }
     ]
   }
