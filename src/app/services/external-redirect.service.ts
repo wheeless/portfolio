@@ -20,10 +20,19 @@ export class ExternalRouteService {
         ['facebook', 'https://www.facebook.com/KyleOfOz'],
     ]);
 
+    private isBot(): boolean {
+        return /bot|crawler|spider|crawling/i.test(navigator.userAgent);
+    }
+
     redirectToExternal(path: string): void {
         const url = this.routes.get(path);
         if (!url) {
             console.error(`No external route found for: ${path}`);
+            return;
+        }
+
+        if (this.isBot()) {
+            window.location.href = url;
             return;
         }
 
