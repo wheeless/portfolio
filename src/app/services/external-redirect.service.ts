@@ -1,9 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ApplicationRef, ComponentRef, createComponent, Type } from '@angular/core';
+import { ExternalLinkDialogComponent } from '../components/core/external-link-dialog/external-link-dialog.component';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ExternalRouteService {
+    private dialogRef: ComponentRef<ExternalLinkDialogComponent> | null = null;
+
+    constructor(private appRef: ApplicationRef) {}
+
     private routes = new Map<string, string>([
         ['instagram', 'https://www.instagram.com/kwheel_s'],
         ['github', 'https://github.com/wheeless'],
@@ -17,10 +22,51 @@ export class ExternalRouteService {
 
     redirectToExternal(path: string): void {
         const url = this.routes.get(path);
-        if (url) {
-            window.location.href = url;
-        } else {
+        if (!url) {
             console.error(`No external route found for: ${path}`);
+            return;
+        }
+
+        this.showDialog().then((decision) => {
+            switch (decision) {
+                case 'new-tab':
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                    break;
+                case 'same-window':
+                    window.location.href = url;
+                    break;
+                case 'cancel':
+                    // Do nothing
+                    break;
+            }
+        });
+    }
+
+    private showDialog(): Promise<'new-tab' | 'same-window' | 'cancel'> {
+        return new Promise((resolve) => {
+            // Create dialog component
+            const dialogComponent = createComponent(ExternalLinkDialogComponent, {
+                environmentInjector: this.appRef.injector,
+            });
+
+            // Add to DOM
+            document.body.appendChild(dialogComponent.location.nativeElement);
+            this.appRef.attachView(dialogComponent.hostView);
+            this.dialogRef = dialogComponent;
+
+            // Listen for decision
+            dialogComponent.instance.decision.subscribe((decision) => {
+                this.closeDialog();
+                resolve(decision);
+            });
+        });
+    }
+
+    private closeDialog(): void {
+        if (this.dialogRef) {
+            this.appRef.detachView(this.dialogRef.hostView);
+            this.dialogRef.destroy();
+            this.dialogRef = null;
         }
     }
 }
