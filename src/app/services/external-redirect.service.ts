@@ -24,14 +24,14 @@ export class ExternalRouteService {
         return /bot|crawler|spider|crawling/i.test(navigator.userAgent);
     }
 
-    redirectToExternal(path: string): void {
+    redirectToExternal(path: string, showDialog: boolean = false): void {
         const url = this.routes.get(path);
         if (!url) {
             console.error(`No external route found for: ${path}`);
             return;
         }
 
-        if (this.isBot()) {
+        if (this.isBot() || !showDialog) {
             window.location.href = url;
             return;
         }

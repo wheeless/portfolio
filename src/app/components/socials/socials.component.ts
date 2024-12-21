@@ -80,6 +80,6 @@ export class SocialsComponent {
     }
 
     navigateToSocial(path: string): void {
-        this.externalRouteService.redirectToExternal(path);
+        this.externalRouteService.redirectToExternal(path, true);
     }
 }
