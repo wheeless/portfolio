@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ExternalRouteService } from '../../services/external-redirect.service';
+import { ExternalRouteService } from '../../../services/external-redirect.service';
 
 @Component({
     selector: 'app-external-redirect',

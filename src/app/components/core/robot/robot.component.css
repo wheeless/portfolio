@@ -1,0 +1,43 @@
+.robot {
+    font-size: 100px;
+    margin-bottom: 1rem;
+    position: relative;
+    animation: shake 0.5s ease-in-out infinite;
+}
+
+.robot-error {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    background: #ff4444;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+@keyframes shake {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-5deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .page {
+        padding: 64px 20px;
+    }
+
+    .robot {
+        font-size: 80px;
+    }
+}

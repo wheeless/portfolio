@@ -2,9 +2,11 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ExternalRedirectComponent } from './components/external-redirect/external-redirect.component';
+import { NotFoundComponent } from './components/core/not-found/not-found.component';
+import { ExternalRedirectComponent } from './components/core/external-redirect/external-redirect.component';
 import { SocialsComponent } from './components/socials/socials.component';
+import { InternalErrorComponent } from './components/core/internal-error/internal-error.component';
+import { ComingSoonComponent } from './components/core/coming-soon/coming-soon.component';
 
 export const routes: Routes = [
     {
@@ -23,6 +25,10 @@ export const routes: Routes = [
     {
         path: 'contact',
         component: ContactComponent,
+    },
+    {
+        path: 'services',
+        component: ComingSoonComponent,
     },
     {
         path: '**/*.+(jpg|jpeg|png|gif|ico|css|js|pdf|txt)',
@@ -66,7 +72,23 @@ export const routes: Routes = [
     },
     {
         path: 'four-oh-four',
-        component: NotFoundComponent,
+        redirectTo: '404',
+    },
+    {
+        path: 'four0four',
+        redirectTo: '404',
+    },
+    {
+        path: 'not-found',
+        redirectTo: '404',
+    },
+    {
+        path: '404',
+        redirectTo: '404',
+    },
+    {
+        path: '500',
+        component: InternalErrorComponent,
     },
     {
         path: '**',
