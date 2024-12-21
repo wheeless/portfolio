@@ -1,0 +1,106 @@
+.page {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 128px 20px;
+}
+
+.content {
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.socials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 2rem;
+}
+
+.social-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    background-color: #212121;
+}
+
+.social-card:hover {
+    transform: translateY(-4px);
+    border-color: #666;
+    background-color: #2a2a2a;
+}
+
+.social-icon {
+    font-size: 2.5rem;
+    min-width: 60px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+    transition: fill 0.3s ease;
+}
+
+.social-card:hover .social-icon svg {
+    fill: #fff;
+}
+
+.social-content {
+    flex: 1;
+}
+
+.social-content h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.social-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .page {
+        padding: 32px 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .social-card {
+        padding: 16px;
+    }
+
+    .social-icon {
+        font-size: 2rem;
+        min-width: 40px;
+    }
+}

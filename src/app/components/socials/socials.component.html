@@ -1,0 +1,31 @@
+<main class="page" role="main">
+    <div class="content" role="contentinfo">
+        <h1 tabindex="0">Connect With Me</h1>
+        <p class="description" tabindex="0">
+            Find me on various social media platforms where I share different aspects of my work and
+            life.
+        </p>
+        <p tabindex="0">
+            Done checking my socials?
+            <a routerLink="/" aria-label="Return to home page">Go back home</a> or
+            <a routerLink="/contact" aria-label="Navigate to contact page">contact me</a>.
+        </p>
+    </div>
+
+    <div class="socials-grid" role="list" aria-label="Social media links">
+        @for (social of socialLinks; track social.name) {
+        <button
+            class="social-card"
+            (click)="navigateToSocial(social.path)"
+            [attr.aria-label]="'Visit my ' + social.name + ' profile'"
+            role="listitem"
+        >
+            <div class="social-icon" [innerHTML]="social.icon"></div>
+            <div class="social-content">
+                <h2>{{ social.name }}</h2>
+                <p>{{ social.description }}</p>
+            </div>
+        </button>
+        }
+    </div>
+</main>
