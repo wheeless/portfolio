@@ -17,6 +17,7 @@
 }
 
 .project-card {
+    position: relative;
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
@@ -207,4 +208,18 @@
     white-space: nowrap;
     z-index: 10;
     margin-bottom: 5px;
+}
+
+.new-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff4081;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

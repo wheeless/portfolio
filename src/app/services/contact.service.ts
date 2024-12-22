@@ -28,10 +28,7 @@ export class ContactService {
 
     private getMailToken(): string {
         const hostname = window.location.hostname;
-        // Remove 'www.' if present
         const domain = hostname.replace('www.', '');
-
-        // Return the appropriate token or default to wheeless.dev token
         return this.tokens[domain as keyof typeof this.tokens] || this.tokens['kylewheeless.com'];
     }
 

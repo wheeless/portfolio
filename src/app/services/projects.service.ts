@@ -52,13 +52,25 @@ export class ProjectsService {
             ] as ProjectTag[],
         },
         {
-            name: 'Blackfox Gaming',
+            name: 'Project Placeholder',
             description:
-                'Game servers, discord bot, and more. Most of the functionality is server-side.',
-            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/aab8d7e2-2e34-44d8-16d5-ab0cf1c9d900/public',
-            link: 'https://discord.gg/2cnCzun',
-            tags: ['Linux', 'Java', 'Server'] as ProjectTag[],
+                'A placeholder API for testing and development. This supports fluid objects, CRUD operations.',
+            longDescription:
+                'Project Placeholder is a versatile development tool that provides dynamic placeholder resources for testing and prototyping. It offers customizable placeholder images with specific dimensions and file types (e.g., /800x600.jpg). Additionally, it provides temporary CRUD operations for mock data objects, allowing developers to test their applications with realistic data that persists for a configurable duration. The API supports JSON objects, arrays, and nested structures, making it ideal for frontend development and API integration testing. All data is ephemeral and automatically cleared after a set period, ensuring a clean testing environment.',
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public',
+            link: 'https://kylewheeless.com/project-placeholder',
+            tags: [
+                'Express',
+                'In Development',
+                'SaaS',
+                'Node.js',
+                'API',
+                'REST',
+                'Startup',
+            ] as ProjectTag[],
+            comingSoon: true,
         },
+
         {
             name: 'Frankie Goldie',
             description:
@@ -68,6 +80,14 @@ export class ProjectsService {
             image: 'https://avernix.com/cdn-cgi/imagedelivery/eFpPUO445KI7hjnFeTxrJQ/a8eaa2d4-9d9a-42c4-a837-bbdbe0437d00/public',
             link: 'https://frankiegoldieandfriends.com',
             tags: ['Angular', 'REST API', 'Business', 'Firebase', 'Full Stack'] as ProjectTag[],
+        },
+        {
+            name: 'Blackfox Gaming',
+            description:
+                'Game servers, discord bot, and more. Most of the functionality is server-side.',
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/aab8d7e2-2e34-44d8-16d5-ab0cf1c9d900/public',
+            link: 'https://discord.gg/2cnCzun',
+            tags: ['Linux', 'Java', 'Server'] as ProjectTag[],
         },
         {
             name: 'Express Version Middleware',

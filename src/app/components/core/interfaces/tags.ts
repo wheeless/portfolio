@@ -89,7 +89,8 @@ export type ProjectStatus =
     | 'Beta'
     | 'Alpha'
     | 'MVP'
-    | 'Production';
+    | 'Production'
+    | 'Coming Soon';
 
 export type ProjectTag =
     | ProgrammingLanguage
@@ -215,6 +216,7 @@ export const TAG_CATEGORIES: TagCategory[] = [
             'Alpha',
             'MVP',
             'Production',
+            'Coming Soon',
         ],
     },
 ];

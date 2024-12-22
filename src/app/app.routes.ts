@@ -28,6 +28,10 @@ export const routes: Routes = [
         component: ProjectDetailComponent,
     },
     {
+        path: 'coming-soon',
+        component: ComingSoonComponent,
+    },
+    {
         path: 'contact',
         component: ContactComponent,
     },

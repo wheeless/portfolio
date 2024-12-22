@@ -8,4 +8,5 @@ export interface Project {
     link: string;
     tags: ProjectTag[];
     slug?: string;
+    comingSoon?: boolean;
 }

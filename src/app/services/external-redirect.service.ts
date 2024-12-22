@@ -1,5 +1,6 @@
 import { Injectable, ApplicationRef, ComponentRef, createComponent, Type } from '@angular/core';
 import { ExternalLinkDialogComponent } from '../components/core/external-link-dialog/external-link-dialog.component';
+import { ProjectsService } from './projects.service';
 
 @Injectable({
     providedIn: 'root',
@@ -7,9 +8,8 @@ import { ExternalLinkDialogComponent } from '../components/core/external-link-di
 export class ExternalRouteService {
     private dialogRef: ComponentRef<ExternalLinkDialogComponent> | null = null;
 
-    constructor(private appRef: ApplicationRef) {}
-
-    private routes = new Map<string, string>([
+    private projects: Map<string, string>;
+    private socials = new Map<string, string>([
         ['instagram', 'https://www.instagram.com/kwheel_s'],
         ['github', 'https://github.com/wheeless'],
         ['linkedin', 'https://www.linkedin.com/in/kylewheeless'],
@@ -20,12 +20,30 @@ export class ExternalRouteService {
         ['facebook', 'https://www.facebook.com/KyleOfOz'],
     ]);
 
+    private categoryMap: { [key: string]: Map<string, string> };
+
+    constructor(private appRef: ApplicationRef, private projectsService: ProjectsService) {
+        this.projects = new Map(
+            this.projectsService
+                .getAllProjects()
+                .map((project) => [project.slug as string, project.link]),
+        );
+        this.categoryMap = {
+            socials: this.socials,
+            projects: this.projects,
+        };
+    }
+
     private isBot(): boolean {
         return /bot|crawler|spider|crawling/i.test(navigator.userAgent);
     }
 
-    redirectToExternal(path: string, showDialog: boolean = false): void {
-        const url = this.routes.get(path) || path;
+    redirectToExternal(
+        path: string,
+        showDialog: boolean = false,
+        category: string = 'socials',
+    ): void {
+        const url = this.categoryMap[category as keyof typeof this.categoryMap].get(path) || path;
 
         if (url.startsWith('http://') || url.startsWith('https://')) {
             if (this.isBot() || !showDialog) {
@@ -53,17 +71,15 @@ export class ExternalRouteService {
 
     private showDialog(url: string): Promise<'new-tab' | 'same-window' | 'cancel'> {
         return new Promise((resolve) => {
-            // Create dialog component
             const dialogComponent = createComponent(ExternalLinkDialogComponent, {
                 environmentInjector: this.appRef.injector,
             });
             dialogComponent.instance.url = url;
-            // Add to DOM
+
             document.body.appendChild(dialogComponent.location.nativeElement);
             this.appRef.attachView(dialogComponent.hostView);
             this.dialogRef = dialogComponent;
 
-            // Listen for decision
             dialogComponent.instance.decision.subscribe((decision) => {
                 this.closeDialog();
                 resolve(decision);

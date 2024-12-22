@@ -53,6 +53,9 @@
                     />
                 </div>
                 <div class="project-content">
+                    @if (project.comingSoon) {
+                    <span class="new-badge" aria-label="New content available">Coming Soon</span>
+                    }
                     <h2>{{ project.name }}</h2>
                     <p>{{ project.description }}</p>
                     <div class="project-tags">
