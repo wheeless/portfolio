@@ -29,7 +29,7 @@ export class ProjectsService {
             name: 'NonPro AdCo',
             description: 'Website built for NonPro AdCo.',
             longDescription:
-                'The NonPro AdCo website is a platform that allows clients to view and manage their respective services. It is built with Next.js, React, Tailwind CSS, and utilizes a REST API to fetch and update data. The website is designed to be user-friendly and efficient, utilizing Avernix Technologies home-built form-to-email REST API.',
+                'The NonPro AdCo website is a platform that allows Non Profit Organizations to connect with NonPro AdCo. It is built with Next.js, React, Tailwind CSS, and utilizes a REST API to fetch and update data. The website is designed to be user-friendly and efficient, utilizing Avernix Technologies home-built form-to-email REST API.',
             image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/5ca1d04d-fd84-44bb-c3dc-371597997000/public',
             link: 'https://nonproadco.avnxapp.com',
             tags: ['Next.js', 'React', 'Business', 'REST API', 'Full Stack'] as ProjectTag[],
