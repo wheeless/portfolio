@@ -32,7 +32,7 @@ export class ExternalRouteService {
                 window.location.href = url;
                 return;
             }
-            this.showDialog().then((decision) => {
+            this.showDialog(url).then((decision) => {
                 switch (decision) {
                     case 'new-tab':
                         window.open(url, '_blank', 'noopener,noreferrer');
@@ -51,13 +51,13 @@ export class ExternalRouteService {
         }
     }
 
-    private showDialog(): Promise<'new-tab' | 'same-window' | 'cancel'> {
+    private showDialog(url: string): Promise<'new-tab' | 'same-window' | 'cancel'> {
         return new Promise((resolve) => {
             // Create dialog component
             const dialogComponent = createComponent(ExternalLinkDialogComponent, {
                 environmentInjector: this.appRef.injector,
             });
-
+            dialogComponent.instance.url = url;
             // Add to DOM
             document.body.appendChild(dialogComponent.location.nativeElement);
             this.appRef.attachView(dialogComponent.hostView);

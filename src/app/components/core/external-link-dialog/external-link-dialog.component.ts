@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
             <div class="dialog-content" (click)="$event.stopPropagation()">
                 <h2>External Link</h2>
                 <p>How would you like to open this link?</p>
+                <p class="url">{{ url }}</p>
                 <div class="dialog-actions">
                     <button class="btn-primary" (click)="onNewTab()">New Tab</button>
                     <button class="btn-secondary" (click)="onSameWindow()">Same Window</button>
@@ -103,10 +104,21 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
                     width: 100%;
                 }
             }
+            .url {
+                font-family: monospace;
+                background: rgba(0, 0, 0, 0.2);
+                padding: 8px;
+                border-radius: 4px;
+                word-break: break-all;
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+                color: #e0e0e0;
+            }
         `,
     ],
 })
 export class ExternalLinkDialogComponent {
+    @Input() url!: string;
     @Output() decision = new EventEmitter<'new-tab' | 'same-window' | 'cancel'>();
 
     onNewTab() {
