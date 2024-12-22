@@ -29,16 +29,8 @@ h1 {
     margin-top: 2rem;
 }
 
-/* .social-card,
-.social-card *,
-.social-icon,
-.social-content,
-.social-content h2,
-.social-content p {
-    background-color: transparent !important;
-} */
-
 .social-card {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 20px;
@@ -49,6 +41,20 @@ h1 {
     transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
     text-align: left;
     background-color: #212121;
+}
+
+.new-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ff4081; /* Or any color you prefer */
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .social-card:hover {

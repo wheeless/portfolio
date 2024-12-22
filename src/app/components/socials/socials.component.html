@@ -20,6 +20,9 @@
             [attr.aria-label]="'Visit my ' + social.name + ' profile'"
             role="listitem"
         >
+            @if (social.newContent) {
+            <span class="new-badge" aria-label="New content available">New Content</span>
+            }
             <div class="social-icon" [innerHTML]="social.icon"></div>
             <div class="social-content">
                 <h2>{{ social.name }}</h2>

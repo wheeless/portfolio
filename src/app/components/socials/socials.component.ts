@@ -8,6 +8,7 @@ interface SocialLink {
     icon: SafeHtml;
     description: string;
     path: string;
+    newContent?: boolean;
 }
 
 @Component({
@@ -39,6 +40,7 @@ export class SocialsComponent {
                 icon: this.sanitizer.bypassSecurityTrustHtml(this.socialIcons.github),
                 description: 'Check out my code repositories and contributions',
                 path: 'github',
+                newContent: true,
             },
             {
                 name: 'LinkedIn',
