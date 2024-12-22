@@ -22,14 +22,26 @@ import { Project } from '../core/interfaces/project.interface';
 })
 export class ProjectsComponent {
     public readonly allProjects: Project[];
+    public readonly TAG_CATEGORIES = TAG_CATEGORIES;
+    public filteredTagCategories: typeof TAG_CATEGORIES;
 
     constructor(private projectsService: ProjectsService) {
         this.allProjects = this.projectsService.getAllProjects();
+
+        const usedTags = new Set(
+            this.projectsService.getAllProjects().flatMap((project) => project.tags),
+        );
+
+        this.filteredTagCategories = TAG_CATEGORIES.map((category) => ({
+            name: category.name,
+            tags: category.tags.filter((tag) => usedTags.has(tag)),
+        })).filter((category) => category.tags.length > 0); // Remove empty categories
     }
 
     public currentPage = 1;
     public itemsPerPage = 6;
     public selectedTags: ProjectTag[] = [];
+    public isTagsExpanded = false;
 
     get availableTags(): ProjectTag[] {
         const tagSet = new Set<ProjectTag>();

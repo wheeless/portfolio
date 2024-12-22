@@ -4,7 +4,8 @@
         <p class="description" tabindex="0">
             Below are some of my public projects, or projects I contributed to. While I've developed
             many other solutions for enterprise clients and employers, these represent my personal
-            and open-source work.
+            and open-source work. If you would like a demo of any of these projects, please contact
+            me.
         </p>
         <p tabindex="0">
             Done viewing my projects?
@@ -13,19 +14,35 @@
         </p>
     </div>
 
-    <!-- Add the tag filtering section -->
     <div class="tags-section" role="group" aria-label="Filter projects by tags">
-        <h2 class="tags-title">Filter by Tags</h2>
-        <div class="tags-container">
-            @for (tag of availableTags; track tag) {
-            <button
-                class="tag-button"
-                [class.active]="selectedTags.includes(tag)"
-                (click)="toggleTag(tag)"
-                [attr.aria-pressed]="selectedTags.includes(tag)"
-            >
-                {{ tag }}
-            </button>
+        <button
+            class="expand-button"
+            (click)="isTagsExpanded = !isTagsExpanded"
+            [attr.aria-expanded]="isTagsExpanded"
+        >
+            <h2 class="tags-title">
+                <span class="title-text">Filter by Tags</span>
+                <span class="expand-icon">{{ isTagsExpanded ? '−' : '+' }}</span>
+            </h2>
+        </button>
+
+        <div class="tags-content" [class.expanded]="isTagsExpanded">
+            @for (category of filteredTagCategories; track category.name) {
+            <div class="tag-category">
+                <h3 class="category-title">{{ category.name }}</h3>
+                <div class="tags-container">
+                    @for (tag of category.tags; track tag) {
+                    <button
+                        class="tag-button"
+                        [class.active]="selectedTags.includes(tag)"
+                        (click)="toggleTag(tag)"
+                        [attr.aria-pressed]="selectedTags.includes(tag)"
+                    >
+                        {{ tag }}
+                    </button>
+                    }
+                </div>
+            </div>
             }
         </div>
     </div>

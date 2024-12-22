@@ -13,7 +13,6 @@
 .project-card-link {
     text-decoration: none;
     color: inherit;
-    /* display: block; */
 }
 
 .project-card {
@@ -65,10 +64,9 @@
     height: auto;
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
     .page {
-        padding: 32px 20px; /* Reduced padding for mobile */
+        padding: 32px 20px;
     }
 
     .projects-grid {
@@ -113,15 +111,33 @@
     }
 }
 
-/* Tag Filter Section */
 .tags-section {
     margin-bottom: 32px;
 }
 
 .tags-title {
-    font-size: 1.2rem;
-    margin-bottom: 16px;
-    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 12px 0;
+}
+
+.expand-icon {
+    font-size: 1.5rem;
+    color: #666;
+    line-height: 1;
+}
+
+.tags-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.tags-content.expanded {
+    max-height: 2000px;
+    transition: max-height 0.5s ease-in;
 }
 
 .tags-container {
@@ -151,7 +167,6 @@
     border-color: #888;
 }
 
-/* Project Card Tags */
 .project-tags {
     display: flex;
     flex-wrap: wrap;
@@ -167,7 +182,6 @@
     color: #fff;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .tags-container {
         gap: 6px;
@@ -189,7 +203,6 @@
     background: #555;
 }
 
-/* Optional: for a nicer tooltip */
 [title] {
     position: relative;
 }
@@ -222,4 +235,23 @@
     font-weight: bold;
     text-transform: uppercase;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tag-category {
+    margin-bottom: 24px;
+}
+
+.category-title {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.expand-button {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
 }
