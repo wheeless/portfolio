@@ -7,6 +7,7 @@ import { ExternalRedirectComponent } from './components/core/external-redirect/e
 import { SocialsComponent } from './components/socials/socials.component';
 import { InternalErrorComponent } from './components/core/internal-error/internal-error.component';
 import { ComingSoonComponent } from './components/core/coming-soon/coming-soon.component';
+import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
 
 export const routes: Routes = [
     {
@@ -21,6 +22,10 @@ export const routes: Routes = [
     {
         path: 'projects',
         component: ProjectsComponent,
+    },
+    {
+        path: 'project/:slug',
+        component: ProjectDetailComponent,
     },
     {
         path: 'contact',

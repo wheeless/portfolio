@@ -25,30 +25,30 @@ export class ExternalRouteService {
     }
 
     redirectToExternal(path: string, showDialog: boolean = false): void {
-        const url = this.routes.get(path);
-        if (!url) {
-            console.error(`No external route found for: ${path}`);
-            return;
-        }
+        const url = this.routes.get(path) || path;
 
-        if (this.isBot() || !showDialog) {
-            window.location.href = url;
-            return;
-        }
-
-        this.showDialog().then((decision) => {
-            switch (decision) {
-                case 'new-tab':
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                    break;
-                case 'same-window':
-                    window.location.href = url;
-                    break;
-                case 'cancel':
-                    // Do nothing
-                    break;
+        if (url.startsWith('http://') || url.startsWith('https://')) {
+            if (this.isBot() || !showDialog) {
+                window.location.href = url;
+                return;
             }
-        });
+            this.showDialog().then((decision) => {
+                switch (decision) {
+                    case 'new-tab':
+                        window.open(url, '_blank', 'noopener,noreferrer');
+                        break;
+                    case 'same-window':
+                        window.location.href = url;
+                        break;
+                    case 'cancel':
+                        // Do nothing
+                        break;
+                }
+            });
+        } else {
+            console.error(`Invalid URL or route: ${path}`);
+            return;
+        }
     }
 
     private showDialog(): Promise<'new-tab' | 'same-window' | 'cancel'> {

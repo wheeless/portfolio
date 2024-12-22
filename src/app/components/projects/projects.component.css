@@ -111,3 +111,100 @@
         flex-wrap: wrap;
     }
 }
+
+/* Tag Filter Section */
+.tags-section {
+    margin-bottom: 32px;
+}
+
+.tags-title {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.tag-button {
+    padding: 6px 12px;
+    border-radius: 16px;
+    border: 1px solid #666;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tag-button:hover {
+    background: #333;
+    border-color: #888;
+}
+
+.tag-button.active {
+    background: #444;
+    border-color: #888;
+}
+
+/* Project Card Tags */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.tag {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: #333;
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tags-container {
+        gap: 6px;
+    }
+
+    .tag-button {
+        padding: 4px 10px;
+        font-size: 0.9rem;
+    }
+}
+
+.more-tag {
+    background: #444;
+    cursor: help;
+    transition: background-color 0.2s ease;
+}
+
+.more-tag:hover {
+    background: #555;
+}
+
+/* Optional: for a nicer tooltip */
+[title] {
+    position: relative;
+}
+
+[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    z-index: 10;
+    margin-bottom: 5px;
+}

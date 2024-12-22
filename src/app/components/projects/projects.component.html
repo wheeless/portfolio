@@ -12,12 +12,28 @@
             <a routerLink="/contact" aria-label="Navigate to contact page">contact me</a>.
         </p>
     </div>
+
+    <!-- Add the tag filtering section -->
+    <div class="tags-section" role="group" aria-label="Filter projects by tags">
+        <h2 class="tags-title">Filter by Tags</h2>
+        <div class="tags-container">
+            @for (tag of availableTags; track tag) {
+            <button
+                class="tag-button"
+                [class.active]="selectedTags.includes(tag)"
+                (click)="toggleTag(tag)"
+                [attr.aria-pressed]="selectedTags.includes(tag)"
+            >
+                {{ tag }}
+            </button>
+            }
+        </div>
+    </div>
+
     <div class="projects-grid" role="list" aria-label="Project showcase grid">
         @for (project of projects; track project.name) {
         <a
-            [href]="project.link"
-            target="_blank"
-            rel="noopener noreferrer"
+            [routerLink]="['/project', project.slug]"
             [attr.aria-label]="'View ' + project.name + ' project (opens in new tab)'"
             class="project-card-link"
         >
@@ -39,6 +55,20 @@
                 <div class="project-content">
                     <h2>{{ project.name }}</h2>
                     <p>{{ project.description }}</p>
+                    <div class="project-tags">
+                        @for (tag of project.tags.slice(0, 3); track tag) {
+                        <span class="tag">{{ tag }}</span>
+                        } @if (project.tags.length > 3) {
+                        <span
+                            class="tag more-tag"
+                            [title]="project.tags.slice(3).join(', ')"
+                            role="tooltip"
+                            [attr.aria-label]="project.tags.slice(3).join(', ')"
+                        >
+                            +{{ project.tags.length - 3 }} more
+                        </span>
+                        }
+                    </div>
                 </div>
             </article>
         </a>
