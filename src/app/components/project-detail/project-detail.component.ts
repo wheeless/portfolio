@@ -19,25 +19,6 @@ import { RouterLink } from '@angular/router';
                     <p class="description" tabindex="0">
                         {{ project.longDescription || project.description }}
                     </p>
-
-                    <div class="project-image">
-                        <img
-                            [ngSrc]="project.image"
-                            [alt]="project.name + ' project thumbnail'"
-                            width="800"
-                            height="400"
-                            class="responsive-image"
-                            priority
-                            fetchpriority="high"
-                        />
-                    </div>
-
-                    <div class="project-tags">
-                        @for (tag of project.tags; track tag) {
-                        <span class="tag">{{ tag }}</span>
-                        }
-                    </div>
-
                     <div class="actions">
                         @if (project.link) {
                         <button
@@ -55,6 +36,22 @@ import { RouterLink } from '@angular/router';
                         >
                             Back to Projects
                         </a>
+                    </div>
+                    <div class="project-tags">
+                        @for (tag of project.tags; track tag) {
+                        <span class="tag">{{ tag }}</span>
+                        }
+                    </div>
+                    <div class="project-image">
+                        <img
+                            [ngSrc]="project.image"
+                            [alt]="project.name + ' project thumbnail'"
+                            width="800"
+                            height="400"
+                            class="responsive-image"
+                            priority
+                            fetchpriority="high"
+                        />
                     </div>
                 </div>
                 } @else {
