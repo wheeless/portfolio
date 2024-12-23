@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { ProjectTag, TAG_CATEGORIES } from '../core/interfaces/tags';
 import { ProjectsService } from '../../services/projects.service';
 import { Project } from '../core/interfaces/project.interface';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 // interface Project {
 //     name: string;
@@ -19,6 +20,14 @@ import { Project } from '../core/interfaces/project.interface';
     imports: [NgOptimizedImage, RouterLink],
     templateUrl: './projects.component.html',
     styleUrl: './projects.component.css',
+    animations: [
+        trigger('projectAnimation', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-in-out', style({ opacity: 1 })),
+            ]),
+        ]),
+    ],
 })
 export class ProjectsComponent {
     public readonly allProjects: Project[];

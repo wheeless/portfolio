@@ -39,6 +39,7 @@ import { RouterLink } from '@angular/router';
                     </div>
 
                     <div class="actions">
+                        @if (project.link) {
                         <button
                             class="primary-button"
                             (click)="redirectToExternal(project.link)"
@@ -46,6 +47,7 @@ import { RouterLink } from '@angular/router';
                         >
                             View Project
                         </button>
+                        }
                         <a
                             routerLink="/projects"
                             class="secondary-button"

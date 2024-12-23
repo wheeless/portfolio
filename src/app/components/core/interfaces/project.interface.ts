@@ -5,7 +5,7 @@ export interface Project {
     description: string;
     longDescription?: string;
     image: string;
-    link: string;
+    link?: string;
     tags: ProjectTag[];
     slug?: string;
     comingSoon?: boolean;

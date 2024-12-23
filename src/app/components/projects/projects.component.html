@@ -27,23 +27,25 @@
         </button>
 
         <div class="tags-content" [class.expanded]="isTagsExpanded">
-            @for (category of filteredTagCategories; track category.name) {
-            <div class="tag-category">
-                <h3 class="category-title">{{ category.name }}</h3>
-                <div class="tags-container">
-                    @for (tag of category.tags; track tag) {
-                    <button
-                        class="tag-button"
-                        [class.active]="selectedTags.includes(tag)"
-                        (click)="toggleTag(tag)"
-                        [attr.aria-pressed]="selectedTags.includes(tag)"
-                    >
-                        {{ tag }}
-                    </button>
-                    }
+            <div class="categories-grid">
+                @for (category of filteredTagCategories; track category.name) {
+                <div class="tag-category">
+                    <h3 class="category-title">{{ category.name }}</h3>
+                    <div class="tags-container">
+                        @for (tag of category.tags; track tag) {
+                        <button
+                            class="tag-button"
+                            [class.active]="selectedTags.includes(tag)"
+                            (click)="toggleTag(tag)"
+                            [attr.aria-pressed]="selectedTags.includes(tag)"
+                        >
+                            {{ tag }}
+                        </button>
+                        }
+                    </div>
                 </div>
+                }
             </div>
-            }
         </div>
     </div>
 
@@ -51,6 +53,7 @@
         @for (project of projects; track project.name) {
         <a
             [routerLink]="['/project', project.slug]"
+            [@projectAnimation]
             [attr.aria-label]="'View ' + project.name + ' project (opens in new tab)'"
             class="project-card-link"
         >

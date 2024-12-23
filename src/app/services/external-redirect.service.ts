@@ -8,7 +8,7 @@ import { ProjectsService } from './projects.service';
 export class ExternalRouteService {
     private dialogRef: ComponentRef<ExternalLinkDialogComponent> | null = null;
 
-    private projects: Map<string, string>;
+    private projects: Map<string, string | undefined>;
     private socials = new Map<string, string>([
         ['instagram', 'https://www.instagram.com/kwheel_s'],
         ['github', 'https://github.com/wheeless'],
@@ -26,11 +26,13 @@ export class ExternalRouteService {
         this.projects = new Map(
             this.projectsService
                 .getAllProjects()
+                .filter((project) => project.link && project.link.length > 0)
                 .map((project) => [project.slug as string, project.link]),
         );
+
         this.categoryMap = {
             socials: this.socials,
-            projects: this.projects,
+            projects: this.projects as Map<string, string>,
         };
     }
 

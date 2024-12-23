@@ -21,8 +21,9 @@
     border-radius: 8px;
     overflow: hidden;
     filter: grayscale(80%);
-    transition: transform 0.2s ease-in-out, filter 0.3s ease;
+    transition: transform 0.2s ease-in-out, filter 0.3s ease-in-out;
     max-width: 378px;
+    will-change: transform, filter;
 }
 
 .project-card:hover {
@@ -34,7 +35,8 @@
     width: 100%;
     height: 200px;
     object-fit: cover;
-    transition: filter 0.3s ease;
+    transition: filter 0.3s ease-in-out;
+    will-change: filter;
 }
 
 .project-content {
@@ -142,12 +144,12 @@
 
 .tags-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 8px;
-    margin-bottom: 24px;
 }
 
 .tag-button {
+    width: fit-content;
     padding: 6px 12px;
     border-radius: 16px;
     border: 1px solid #666;
@@ -254,4 +256,22 @@
     padding: 0;
     cursor: pointer;
     text-align: left;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 12px;
+}
+
+@media (max-width: 768px) {
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1200px) {
+    .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
 }
