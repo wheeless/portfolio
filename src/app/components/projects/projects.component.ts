@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed, Signal, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProjectTag, TAG_CATEGORIES } from '../core/interfaces/tags';
 import { ProjectsService } from '../../services/projects.service';
@@ -30,83 +30,85 @@ import { animate, style, transition, trigger } from '@angular/animations';
     ],
 })
 export class ProjectsComponent {
-    public readonly allProjects: Project[];
+    public readonly allProjects: Signal<Project[]>;
     public readonly TAG_CATEGORIES = TAG_CATEGORIES;
-    public filteredTagCategories: typeof TAG_CATEGORIES;
+    public readonly filteredTagCategories: Signal<typeof TAG_CATEGORIES>;
 
     constructor(private projectsService: ProjectsService) {
-        this.allProjects = this.projectsService.getAllProjects();
+        this.allProjects = signal(this.projectsService.getAllProjects());
 
         const usedTags = new Set(
             this.projectsService.getAllProjects().flatMap((project) => project.tags),
         );
 
-        this.filteredTagCategories = TAG_CATEGORIES.map((category) => ({
-            name: category.name,
-            tags: category.tags.filter((tag) => usedTags.has(tag)),
-        })).filter((category) => category.tags.length > 0); // Remove empty categories
+        this.filteredTagCategories = computed(() =>
+            TAG_CATEGORIES.map((category) => ({
+                name: category.name,
+                tags: category.tags.filter((tag) => usedTags.has(tag)),
+            })).filter((category) => category.tags.length > 0),
+        );
     }
 
-    public currentPage = 1;
-    public itemsPerPage = 6;
-    public selectedTags: ProjectTag[] = [];
-    public isTagsExpanded = false;
+    public currentPage = signal(1);
+    public itemsPerPage = signal(6);
+    public selectedTags = signal<ProjectTag[]>([]);
+    public isTagsExpanded = signal(false);
 
     get availableTags(): ProjectTag[] {
         const tagSet = new Set<ProjectTag>();
-        this.allProjects.forEach((project) => {
+        this.allProjects().forEach((project) => {
             project.tags.forEach((tag) => tagSet.add(tag));
         });
         return Array.from(tagSet).sort();
     }
 
-    get filteredProjects(): Project[] {
-        if (this.selectedTags.length === 0) {
-            return this.allProjects;
+    public filteredProjects = computed(() => {
+        if (this.selectedTags().length === 0) {
+            return this.allProjects();
         }
-        return this.allProjects.filter((project) =>
-            this.selectedTags.every((tag) => project.tags.includes(tag)),
+        return this.allProjects().filter((project) =>
+            this.selectedTags().every((tag) => project.tags.includes(tag)),
         );
-    }
+    });
 
-    get totalPages(): number {
-        return Math.ceil(this.filteredProjects.length / this.itemsPerPage);
-    }
+    public totalPages = computed(() =>
+        Math.ceil(this.filteredProjects().length / this.itemsPerPage()),
+    );
 
     get projects(): Project[] {
-        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-        return this.filteredProjects.slice(startIndex, startIndex + this.itemsPerPage);
+        const startIndex = (this.currentPage() - 1) * this.itemsPerPage();
+        return this.filteredProjects().slice(startIndex, startIndex + this.itemsPerPage());
     }
 
     toggleTag(tag: ProjectTag): void {
-        const index = this.selectedTags.indexOf(tag);
+        const index = this.selectedTags().indexOf(tag);
         if (index === -1) {
-            this.selectedTags.push(tag);
+            this.selectedTags.set([...this.selectedTags(), tag]);
         } else {
-            this.selectedTags.splice(index, 1);
+            this.selectedTags.set(this.selectedTags().filter((t) => t !== tag));
         }
-        this.currentPage = 1; // Reset to first page when filtering
+        this.currentPage.set(1); // Reset to first page when filtering
     }
 
     nextPage(): void {
-        if (this.currentPage < this.totalPages) {
-            this.currentPage++;
+        if (this.currentPage() < this.totalPages()) {
+            this.currentPage.set(this.currentPage() + 1);
         }
     }
 
     previousPage(): void {
-        if (this.currentPage > 1) {
-            this.currentPage--;
+        if (this.currentPage() > 1) {
+            this.currentPage.set(this.currentPage() - 1);
         }
     }
 
     goToPage(page: number): void {
-        if (page >= 1 && page <= this.totalPages) {
-            this.currentPage = page;
+        if (page >= 1 && page <= this.totalPages()) {
+            this.currentPage.set(page);
         }
     }
 
     getPageNumbers() {
-        return Array.from({ length: this.totalPages }, (_, i) => i);
+        return Array.from({ length: this.totalPages() }, (_, i) => i);
     }
 }

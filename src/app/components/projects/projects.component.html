@@ -17,27 +17,27 @@
     <div class="tags-section" role="group" aria-label="Filter projects by tags">
         <button
             class="expand-button"
-            (click)="isTagsExpanded = !isTagsExpanded"
-            [attr.aria-expanded]="isTagsExpanded"
+            (click)="isTagsExpanded.set(!isTagsExpanded())"
+            [attr.aria-expanded]="isTagsExpanded()"
         >
             <h2 class="tags-title">
                 <span class="title-text">Filter by Tags</span>
-                <span class="expand-icon">{{ isTagsExpanded ? '−' : '+' }}</span>
+                <span class="expand-icon">{{ isTagsExpanded() ? '−' : '+' }}</span>
             </h2>
         </button>
 
-        <div class="tags-content" [class.expanded]="isTagsExpanded">
+        <div class="tags-content" [class.expanded]="isTagsExpanded()">
             <div class="categories-grid">
-                @for (category of filteredTagCategories; track category.name) {
+                @for (category of filteredTagCategories(); track category.name) {
                 <div class="tag-category">
                     <h3 class="category-title">{{ category.name }}</h3>
                     <div class="tags-container">
                         @for (tag of category.tags; track tag) {
                         <button
                             class="tag-button"
-                            [class.active]="selectedTags.includes(tag)"
+                            [class.active]="selectedTags().includes(tag)"
                             (click)="toggleTag(tag)"
-                            [attr.aria-pressed]="selectedTags.includes(tag)"
+                            [attr.aria-pressed]="selectedTags().includes(tag)"
                         >
                             {{ tag }}
                         </button>
@@ -98,23 +98,31 @@
         }
     </div>
 
-    @if (totalPages > 1) {
+    @if (totalPages() > 1) {
     <nav class="pagination" aria-label="Projects pagination">
-        <button (click)="previousPage()" [disabled]="currentPage === 1" aria-label="Previous page">
+        <button
+            (click)="previousPage()"
+            [disabled]="currentPage() === 1"
+            aria-label="Previous page"
+        >
             Previous
         </button>
 
         @for (page of getPageNumbers(); track page) {
         <button
             (click)="goToPage(page + 1)"
-            [class.active]="currentPage === page + 1"
-            [attr.aria-current]="currentPage === page + 1 ? 'page' : null"
+            [class.active]="currentPage() === page + 1"
+            [attr.aria-current]="currentPage() === page + 1 ? 'page' : null"
         >
             {{ page }}
         </button>
         }
 
-        <button (click)="nextPage()" [disabled]="currentPage === totalPages" aria-label="Next page">
+        <button
+            (click)="nextPage()"
+            [disabled]="currentPage() === totalPages()"
+            aria-label="Next page"
+        >
             Next
         </button>
     </nav>
