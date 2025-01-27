@@ -37,7 +37,9 @@ export class ExternalRouteService {
     }
 
     private isBot(): boolean {
-        return /bot|crawler|spider|crawling/i.test(navigator.userAgent);
+        return /bot|crawler|spider|crawling|headless|prerender|scraper|lighthouse|slurp|googlebot|bingbot|yandex|baidu|duckduckbot|yahoo|baiduspider|facebookexternalhit|whatsapp|telegram|discord|slack|twitter|semrush|ahrefs|mj12bot|archive.org_bot/i.test(
+            navigator.userAgent,
+        );
     }
 
     redirectToExternal(
