@@ -1,6 +1,6 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, computed, Signal, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { ProjectTag, TAG_CATEGORIES } from '../core/interfaces/tags';
 import { ProjectsService } from '../../services/projects.service';
 import { Project } from '../core/interfaces/project.interface';
@@ -33,8 +33,16 @@ export class ProjectsComponent {
     public readonly allProjects: Signal<Project[]>;
     public readonly TAG_CATEGORIES = TAG_CATEGORIES;
     public readonly filteredTagCategories: Signal<typeof TAG_CATEGORIES>;
-
-    constructor(private projectsService: ProjectsService) {
+    public currentPage = signal(0);
+    public itemsPerPage = signal(6);
+    public selectedTags = signal<ProjectTag[]>([]);
+    public isTagsExpanded = signal(false);
+    page: string | number | null = null;
+    constructor(
+        private projectsService: ProjectsService,
+        private route: ActivatedRoute,
+        private router: Router,
+    ) {
         this.allProjects = signal(this.projectsService.getAllProjects());
 
         const usedTags = new Set(
@@ -49,10 +57,17 @@ export class ProjectsComponent {
         );
     }
 
-    public currentPage = signal(1);
-    public itemsPerPage = signal(6);
-    public selectedTags = signal<ProjectTag[]>([]);
-    public isTagsExpanded = signal(false);
+    ngOnInit() {
+        this.page = this.route.snapshot.queryParamMap.get('page') ?? this.currentPage();
+        const pageNumber = parseInt(this.page as string, 10);
+        if (!isNaN(pageNumber) && pageNumber >= 0) {
+            this.currentPage.set(pageNumber);
+            this.setQueryParams();
+        } else {
+            this.currentPage.set(this.currentPage());
+            this.setQueryParams();
+        }
+    }
 
     get availableTags(): ProjectTag[] {
         const tagSet = new Set<ProjectTag>();
@@ -76,7 +91,7 @@ export class ProjectsComponent {
     );
 
     get projects(): Project[] {
-        const startIndex = (this.currentPage() - 1) * this.itemsPerPage();
+        const startIndex = this.currentPage() * this.itemsPerPage();
         return this.filteredProjects().slice(startIndex, startIndex + this.itemsPerPage());
     }
 
@@ -87,28 +102,37 @@ export class ProjectsComponent {
         } else {
             this.selectedTags.set(this.selectedTags().filter((t) => t !== tag));
         }
-        this.currentPage.set(1); // Reset to first page when filtering
+        this.currentPage.set(0);
+        this.setQueryParams();
     }
 
     nextPage(): void {
         if (this.currentPage() < this.totalPages()) {
             this.currentPage.set(this.currentPage() + 1);
+            this.setQueryParams();
         }
     }
 
     previousPage(): void {
-        if (this.currentPage() > 1) {
+        if (this.currentPage() > 0) {
             this.currentPage.set(this.currentPage() - 1);
+            this.setQueryParams();
         }
     }
 
     goToPage(page: number): void {
-        if (page >= 1 && page <= this.totalPages()) {
+        if (page >= 0 && page <= this.totalPages()) {
             this.currentPage.set(page);
+            this.setQueryParams();
         }
     }
 
     getPageNumbers() {
         return Array.from({ length: this.totalPages() }, (_, i) => i);
+    }
+
+    setQueryParams() {
+        this.router.navigate(['/projects'], { queryParams: { page: this.currentPage() } });
+        return;
     }
 }

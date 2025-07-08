@@ -48,6 +48,7 @@ export class ExternalRouteService {
         category: string = 'socials',
     ): void {
         const url = this.categoryMap[category as keyof typeof this.categoryMap].get(path) || path;
+        console.log(`Redirecting to URL: ${url} (Category: ${category}, Path: ${path})`);
 
         if (url.startsWith('http://') || url.startsWith('https://')) {
             if (this.isBot() || !showDialog) {

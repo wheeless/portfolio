@@ -31,6 +31,7 @@ import { RouterLink } from '@angular/router';
                         }
                         <a
                             routerLink="/projects"
+                            [queryParams]="{ page: this.page }"
                             class="secondary-button"
                             aria-label="Back to projects"
                         >
@@ -58,7 +59,12 @@ import { RouterLink } from '@angular/router';
                 <div class="not-found">
                     <h1 tabindex="0">Project Not Found</h1>
                     <p tabindex="0">The project you're looking for doesn't exist.</p>
-                    <a routerLink="/projects" class="primary-button" aria-label="Back to projects">
+                    <a
+                        [routerLink]="['/projects']"
+                        [queryParams]="{ page: this.page }"
+                        class="primary-button"
+                        aria-label="Back to projects"
+                    >
                         Back to Projects
                     </a>
                 </div>
@@ -183,6 +189,7 @@ import { RouterLink } from '@angular/router';
 })
 export class ProjectDetailComponent implements OnInit {
     project?: Project;
+    page: string | null = null;
 
     constructor(
         private route: ActivatedRoute,
@@ -199,9 +206,18 @@ export class ProjectDetailComponent implements OnInit {
                 this.router.navigate(['/projects']);
             }
         }
+        this.route.queryParamMap.subscribe((queryParams) => {
+            const pageParam = queryParams.get('page');
+            if (!pageParam || isNaN(Number(pageParam)) || Number(pageParam) < 0) {
+                this.page = '0';
+            } else {
+                this.page = pageParam;
+            }
+            console.log('Query param (page) set to:', this.page);
+        });
     }
 
     redirectToExternal(path: string): void {
-        this.externalRouteService.redirectToExternal(path, true);
+        this.externalRouteService.redirectToExternal(path, true, 'projects');
     }
 }
