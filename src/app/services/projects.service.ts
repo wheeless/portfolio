@@ -52,23 +52,13 @@ export class ProjectsService {
             ] as ProjectTag[],
         },
         {
-            name: 'Project Placeholder',
-            description:
-                'A placeholder API for testing and development. This supports fluid objects, CRUD operations.',
+            name: 'Crunchy Bread',
+            description: 'A way for teams to quickly have their daily standup meetings.',
             longDescription:
-                'Project Placeholder is a versatile development tool that provides dynamic placeholder resources for testing and prototyping. It offers customizable placeholder images with specific dimensions and file types (e.g., /800x600.jpg). Additionally, it provides temporary CRUD operations for mock data objects, allowing developers to test their applications with realistic data that persists for a configurable duration. The API supports JSON objects, arrays, and nested structures, making it ideal for frontend development and API integration testing. All data is ephemeral and automatically cleared after a set period, ensuring a clean testing environment.',
-            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public',
-            // link: 'https://kylewheeless.com/project-placeholder',
-            tags: [
-                'Express',
-                'In Development',
-                'SaaS',
-                'Node.js',
-                'API',
-                'REST',
-                'Startup',
-            ] as ProjectTag[],
-            comingSoon: true,
+                "'Crunchy Bread is a web application designed to facilitate daily standup meetings for teams. Built with React and TypeScript, it offers an intuitive interface for team members to share updates, blockers, and plans. The application leverages a REST API for seamless data management and real-time collaboration. With features like reminders, progress tracking, and integration with popular project management tools, Crunchy Bread aims to streamline communication and enhance productivity within teams. Currently, the application supports three main modes: Named, where each user has a name and set time with corresponding notes. Quick Count Mode, where you simply set the timer and number of participants. Finally, Free-for-all Mode, where the timer rolls continuously and only ends when the runner hits end standup.",
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/5abe8a91-4627-428f-3cdb-6d24b6284500/public',
+            link: 'https://crunchybread.io',
+            tags: ['React', 'TypeScript', 'Productivity', 'Next.js', 'Full Stack'] as ProjectTag[],
         },
         {
             name: 'Frankie Goldie',
@@ -87,6 +77,25 @@ export class ProjectsService {
             image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/aab8d7e2-2e34-44d8-16d5-ab0cf1c9d900/public',
             // link: 'https://discord.gg/2cnCzun',
             tags: ['Linux', 'Java', 'Server'] as ProjectTag[],
+        },
+        {
+            name: 'Project Placeholder',
+            description:
+                'A placeholder API for testing and development. This supports fluid objects, CRUD operations.',
+            longDescription:
+                'Project Placeholder is a versatile development tool that provides dynamic placeholder resources for testing and prototyping. It offers customizable placeholder images with specific dimensions and file types (e.g., /800x600.jpg). Additionally, it provides temporary CRUD operations for mock data objects, allowing developers to test their applications with realistic data that persists for a configurable duration. The API supports JSON objects, arrays, and nested structures, making it ideal for frontend development and API integration testing. All data is ephemeral and automatically cleared after a set period, ensuring a clean testing environment.',
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public',
+            // link: 'https://kylewheeless.com/project-placeholder',
+            tags: [
+                'Express',
+                'In Development',
+                'SaaS',
+                'Node.js',
+                'API',
+                'REST',
+                'Startup',
+            ] as ProjectTag[],
+            comingSoon: true,
         },
         {
             name: 'Express Version Middleware',
