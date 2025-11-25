@@ -54,8 +54,16 @@ export class ProjectsService {
         {
             name: 'Crunchy Bread',
             description: 'A way for teams to quickly have their daily standup meetings.',
-            longDescription:
-                'Crunchy Bread is a web application designed to facilitate daily standup meetings for teams. Built with React and TypeScript, it offers an intuitive interface for team members to share updates, blockers, and plans. The application leverages a REST API for seamless data management and real-time collaboration. With features like reminders, progress tracking, and integration with popular project management tools, Crunchy Bread aims to streamline communication and enhance productivity within teams. Currently, the application supports three main modes: Named, where each user has a name and set time with corresponding notes. Quick Count Mode, where you simply set the timer and number of participants. Finally, Free-for-all Mode, where the timer rolls continuously and only ends when the runner hits end standup.',
+            longDescription: `Crunchy Bread is a web application designed to facilitate daily standup meetings for teams. Built with Next.js, React, and TypeScript, it offers an intuitive interface for time-boxing team standup updates. The application runs entirely client-side with
+  no backend required, making it lightweight and privacy-focused.
+  With features like customizable timers, visual progress tracking
+  with toast emojis (🍞✨ for perfect, 🍞⏰ for close, 🍞🔥 for
+  overtime), and downloadable summary reports, Crunchy Bread helps
+  teams stay focused and on-time. The application supports three
+  main modes: Named Mode with draggable participant lists and
+  note-taking, Quick Count Mode for anonymous participants with
+  just a head count, and Free-for-All Mode with continuous rolling
+  timers for open-ended standups.`,
             image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/5abe8a91-4627-428f-3cdb-6d24b6284500/public',
             link: 'https://crunchybread.io',
             tags: ['React', 'TypeScript', 'Productivity', 'Next.js', 'Full Stack'] as ProjectTag[],
