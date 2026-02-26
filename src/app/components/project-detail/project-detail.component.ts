@@ -28,6 +28,14 @@ import { RouterLink } from '@angular/router';
                         >
                             View Project
                         </button>
+                        } @if (project.internalLink) {
+                        <a
+                            [routerLink]="project.internalLink"
+                            class="primary-button"
+                            [attr.aria-label]="'View ' + project.name + ' project'"
+                        >
+                            View Project
+                        </a>
                         }
                         <a
                             routerLink="/projects"

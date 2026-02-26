@@ -8,6 +8,15 @@ import { Project } from '../components/core/interfaces/project.interface';
 export class ProjectsService {
     private readonly projects: Project[] = [
         {
+            name: 'Azeroth Speaks',
+            description: 'Choose a WoW race and ask your question — powered by Claude AI.',
+            longDescription:
+                'Azeroth Speaks is a fun, race-driven prompt tool built on Claude AI. Select the race you are speaking to, choose your own race, ask anything, and receive a response from the heart of the World of Warcraft.',
+            image: 'https://blz-contentstack-images.akamaized.net/v3/assets/blt3452e3b114fab0cd/blte82ef8135378a09b/5d4883cabf384b03afd01553/Logo-wow.png?imwidth=828',
+            internalLink: '/hosted/wow-prompt',
+            tags: ['TypeScript', 'Angular', 'API', 'Full Stack'] as ProjectTag[],
+        },
+        {
             name: 'Avernix Technologies',
             description: 'Homepage for my software company.',
             longDescription:

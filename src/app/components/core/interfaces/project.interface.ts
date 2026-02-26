@@ -6,6 +6,7 @@ export interface Project {
     longDescription?: string;
     image: string;
     link?: string;
+    internalLink?: string;
     tags: ProjectTag[];
     slug?: string;
     comingSoon?: boolean;

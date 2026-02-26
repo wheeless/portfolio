@@ -1,0 +1,68 @@
+<div class="select-container">
+    <button
+        type="button"
+        class="select-trigger"
+        [class.is-open]="isOpen()"
+        [class.has-value]="selectedLabel()"
+        (click)="toggleDropdown($event)"
+        [attr.aria-expanded]="isOpen()"
+        [attr.aria-label]="selectedLabel() ?? placeholder"
+        aria-haspopup="listbox"
+    >
+        <span class="trigger-label">{{ selectedLabel() ?? placeholder }}</span>
+        <span class="trigger-actions">
+            @if (selectedLabel()) {
+            <span
+                class="clear-btn"
+                role="button"
+                tabindex="0"
+                aria-label="Clear selection"
+                (click)="clear($event)"
+                (keydown.enter)="clear($event)"
+                >&#x2715;</span
+            >
+            }
+            <span class="chevron" [class.rotated]="isOpen()">&#x25BE;</span>
+        </span>
+    </button>
+
+    @if (isOpen()) {
+    <div class="dropdown-panel" role="listbox">
+        @if (showSearch()) {
+        <div class="search-wrapper">
+            <input
+                #searchInput
+                type="text"
+                class="search-input"
+                placeholder="Search..."
+                [value]="searchQuery()"
+                (input)="onSearchInput($event)"
+                aria-label="Search options"
+                autocomplete="off"
+            />
+        </div>
+        }
+
+        <div class="options-list">
+            @if (filteredGroups().length === 0) {
+            <div class="no-results">No results found</div>
+            } @for (group of filteredGroups(); track group.header) {
+            <div role="group" [attr.aria-label]="group.header">
+                <div class="group-header">{{ group.header }}</div>
+                @for (option of group.options; track option.value) {
+                <div
+                    class="option"
+                    role="option"
+                    [attr.aria-selected]="selectedValue() === option.value"
+                    [class.selected]="selectedValue() === option.value"
+                    (click)="selectOption(option, $event)"
+                >
+                    {{ option.label }}
+                </div>
+                }
+            </div>
+            }
+        </div>
+    </div>
+    }
+</div>

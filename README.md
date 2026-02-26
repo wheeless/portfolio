@@ -37,7 +37,7 @@ A modern, Angular-based portfolio website showcasing my professional work, skill
 [MIT License](LICENSE)
 
 ## 📫 Contact
-- Email: kyle@wheeless.dev
+- Email: me@kylewheeless.com
 - LinkedIn: [My LinkedIn](https://www.linkedin.com/in/kylewheeless/)
 - Website: [My website](https://kylewheeless.com)
 

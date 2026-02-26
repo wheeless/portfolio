@@ -8,6 +8,7 @@ import { SocialsComponent } from './components/socials/socials.component';
 import { InternalErrorComponent } from './components/core/internal-error/internal-error.component';
 import { ComingSoonComponent } from './components/core/coming-soon/coming-soon.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
+import { WowPromptComponent } from './components/internal/wow-prompt/wow-prompt.component';
 
 export const routes: Routes = [
     {
@@ -26,6 +27,10 @@ export const routes: Routes = [
     {
         path: 'project/:slug',
         component: ProjectDetailComponent,
+    },
+    {
+        path: 'hosted/wow-prompt',
+        component: WowPromptComponent,
     },
     {
         path: 'coming-soon',
