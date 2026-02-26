@@ -1,5 +1,5 @@
 <main class="page" role="main">
-    <div class="content" [class.has-response]="isLoading || !!displayedReply || !!error">
+    <div class="content" [class.has-response]="isLoading || !!displayedReply || conversationHistory.length > 0 || !!error">
         <div class="header">
             <img
                 src="https://blz-contentstack-images.akamaized.net/v3/assets/blt3452e3b114fab0cd/blte82ef8135378a09b/5d4883cabf384b03afd01553/Logo-wow.png?imwidth=828"
@@ -21,41 +21,50 @@
                     role="form"
                     aria-label="WoW prompt form"
                 >
-                    <div class="form-group">
-                        <label>You are a... <span class="required-star">*</span></label>
-                        <app-select
-                            [groups]="raceGroups"
-                            placeholder="Select your race"
-                            (selectionChange)="onUsersRaceChange($event)"
-                        />
-                    </div>
+                    @if (isConversationActive) {
+                        <div class="conversation-info">
+                            <span class="conversation-context">{{ submittedUsersRace }} → {{ submittedCharacter }}</span>
+                            <button type="button" class="reset-btn" (click)="resetConversation()">
+                                New Conversation
+                            </button>
+                        </div>
+                    } @else {
+                        <div class="form-group">
+                            <label>You are a... <span class="required-star">*</span></label>
+                            <app-select
+                                [groups]="raceGroups"
+                                placeholder="Select your race"
+                                (selectionChange)="onUsersRaceChange($event)"
+                            />
+                        </div>
 
-                    <div class="form-group">
-                        <label>Style</label>
-                        <select
-                            class="style-select"
-                            [(ngModel)]="selectedStyle"
-                            name="style"
-                            aria-label="Response style"
-                            (ngModelChange)="onStyleChange()"
-                        >
-                            <option value="default">Generic Races</option>
-                            <option value="specific">Notable NPCs</option>
-                        </select>
-                    </div>
+                        <div class="form-group">
+                            <label>Style</label>
+                            <select
+                                class="style-select"
+                                [(ngModel)]="selectedStyle"
+                                name="style"
+                                aria-label="Response style"
+                                (ngModelChange)="onStyleChange()"
+                            >
+                                <option value="default">Generic Races</option>
+                                <option value="specific">Notable NPCs</option>
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label>
-                            {{ selectedStyle === 'specific' ? 'You are speaking to...' : 'You are speaking to a...' }}
-                            <span class="required-star">*</span>
-                        </label>
-                        <app-select
-                            [groups]="targetGroups"
-                            [value]="selectedCharacter"
-                            [placeholder]="selectedStyle === 'specific' ? 'Select a character' : 'Select a race'"
-                            (selectionChange)="onCharacterChange($event)"
-                        />
-                    </div>
+                        <div class="form-group">
+                            <label>
+                                {{ selectedStyle === 'specific' ? 'You are speaking to...' : 'You are speaking to a...' }}
+                                <span class="required-star">*</span>
+                            </label>
+                            <app-select
+                                [groups]="targetGroups"
+                                [value]="selectedCharacter"
+                                [placeholder]="selectedStyle === 'specific' ? 'Select a character' : 'Select a race'"
+                                (selectionChange)="onCharacterChange($event)"
+                            />
+                        </div>
+                    }
 
                     <div class="form-group">
                         <label for="message"
@@ -74,10 +83,10 @@
                     <div class="button-row">
                         <button
                             type="submit"
-                            [disabled]="isLoading"
+                            [disabled]="isLoading || isTyping"
                             aria-label="Generate WoW prompt"
                         >
-                            {{ isLoading ? 'Generating...' : 'Generate' }}
+                            {{ isLoading ? 'Thinking...' : isConversationActive ? 'Send' : 'Generate' }}
                         </button>
                         @if (validationError) {
                             <span class="validation-error" role="alert">{{ validationError }}</span>
@@ -86,15 +95,31 @@
                 </form>
             </div>
 
-            <div class="response-panel">
+            <div class="response-panel" #responsePanel>
                 @if (error) {
                     <div class="error-message" role="alert" aria-live="polite">{{ error }}</div>
                 }
+
+                @for (msg of threadMessages; track $index) {
+                    @if (msg.role === 'user') {
+                        <div class="user-message">
+                            <p class="thread-label">{{ submittedUsersRace }}</p>
+                            <p class="thread-text">{{ msg.content }}</p>
+                        </div>
+                    } @else {
+                        <div class="reply-box">
+                            <h2 class="reply-heading">{{ speaksPrefix }}{{ submittedCharacter }} Speaks:</h2>
+                            <p class="wow-text">{{ msg.content }}</p>
+                        </div>
+                    }
+                }
+
                 @if (isLoading) {
                     <div class="thinking-box" role="status" aria-live="polite">
                         <p class="thinking-text">{{ thinkingText }}</p>
                     </div>
                 }
+
                 @if (displayedReply) {
                     <div
                         class="reply-box"
@@ -105,6 +130,16 @@
                         <h2 class="reply-heading">{{ speaksPrefix }}{{ submittedCharacter }} Speaks:</h2>
                         <p class="wow-text" [class.wow-cursor]="isTyping">{{ displayedReply }}</p>
                     </div>
+                    @if (!isTyping) {
+                        <button
+                            type="button"
+                            class="download-btn"
+                            (click)="download()"
+                            aria-label="Download this response"
+                        >
+                            ↓ Download Scroll
+                        </button>
+                    }
                 }
             </div>
         </div>

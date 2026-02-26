@@ -1,6 +1,6 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { SelectComponent } from '../../core/ui/select/select.component';
@@ -26,7 +26,21 @@ export class WowPromptComponent implements OnDestroy {
     submittedStyle: 'default' | 'specific' = 'default';
     selectedCharacter: string | null = null;
     submittedCharacter = '';
+    submittedMessage = '';
+    submittedUsersRace = '';
+    conversationHistory: { role: 'user' | 'assistant'; content: string }[] = [];
+    isConversationActive = false;
+
+    get threadMessages(): { role: 'user' | 'assistant'; content: string }[] {
+        const last = this.conversationHistory[this.conversationHistory.length - 1];
+        if (this.displayedReply && last?.role === 'assistant') {
+            return this.conversationHistory.slice(0, -1);
+        }
+        return this.conversationHistory;
+    }
     selectedUsersRace: string | null = null;
+
+    @ViewChild('responsePanel') responsePanelRef!: ElementRef<HTMLElement>;
 
     private typingInterval: ReturnType<typeof setInterval> | null = null;
 
@@ -191,12 +205,31 @@ export class WowPromptComponent implements OnDestroy {
 
     readonly promptLabel = this.promptLabels[Math.floor(Math.random() * this.promptLabels.length)];
 
+    debugMode = false;
+
+    private readonly mockReplies = [
+        "You dare approach me with such a question? Very well... I have walked this world since before your kind drew breath. The answer you seek is closer than you think, mortal — but wisdom has a price.",
+        "Hmph. Bold of you to ask. I have crushed armies for less. But there is... something refreshing about your directness. Listen well, for I will say this only once.",
+        "Ah, a curious one. The spirits whisper your name to me even now. Sit. Let the fire between us illuminate what words alone cannot. I will tell you what I know.",
+        "You ask me this? *laughs slowly* I have seen civilizations crumble into dust asking less dangerous questions than yours. But fine. Today I am feeling generous.",
+        "Interesting. Most who stand before me tremble. You merely... ask. I respect that. Know that my answer carries the weight of ages — do not take it lightly.",
+        "Your question echoes through the Nether itself. I have pondered such things in the dark between worlds. Here is what I have learned after an eternity of searching...",
+        "By the Light — or whatever power moves through this place — you have nerve. I will grant you that. And so I will grant you an answer as well. But remember this moment.",
+    ];
+
     private readonly apiUrl = 'https://wow-prompt.kylewheeless.com/';
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private route: ActivatedRoute) {
+        this.debugMode = this.route.snapshot.queryParamMap.get('debug') === 'true';
+    }
 
     ngOnDestroy(): void {
         this.clearTyping();
+    }
+
+    private scrollToBottom(): void {
+        const el = this.responsePanelRef?.nativeElement;
+        if (el) el.scrollTop = el.scrollHeight;
     }
 
     private clearTyping(): void {
@@ -214,9 +247,12 @@ export class WowPromptComponent implements OnDestroy {
         this.typingInterval = setInterval(() => {
             if (i < text.length) {
                 this.displayedReply += text[i++];
+                this.scrollToBottom();
             } else {
                 this.clearTyping();
                 this.isTyping = false;
+                this.conversationHistory.push({ role: 'assistant', content: text });
+                this.scrollToBottom();
             }
         }, 25);
     }
@@ -233,6 +269,49 @@ export class WowPromptComponent implements OnDestroy {
         this.selectedUsersRace = value;
     }
 
+    resetConversation(): void {
+        this.conversationHistory = [];
+        this.isConversationActive = false;
+        this.displayedReply = '';
+        this.reply = '';
+        this.message = '';
+        this.error = '';
+        this.validationError = '';
+        this.clearTyping();
+    }
+
+    download(): void {
+        const speakerLabel = this.submittedStyle === 'specific'
+            ? this.submittedCharacter
+            : `The ${this.submittedCharacter}`;
+
+        const lines = [
+            '=== Azeroth Speaks ===',
+            '',
+            `From:  ${this.submittedUsersRace}`,
+            `To:    ${this.submittedCharacter}`,
+            '',
+            '--- Conversation ---',
+        ];
+
+        for (const msg of this.conversationHistory) {
+            lines.push('');
+            if (msg.role === 'user') {
+                lines.push(`You: ${msg.content}`);
+            } else {
+                lines.push(`${speakerLabel}: ${msg.content}`);
+            }
+        }
+
+        const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `azeroth-speaks-${this.submittedCharacter.toLowerCase().replace(/[\s']+/g, '-')}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
     async submit() {
         if (!this.selectedUsersRace || !this.selectedCharacter || !this.message.trim()) {
             this.validationError = 'Please fill in all required fields.';
@@ -242,6 +321,11 @@ export class WowPromptComponent implements OnDestroy {
         this.validationError = '';
         this.submittedStyle = this.selectedStyle;
         this.submittedCharacter = this.selectedCharacter ?? '';
+        this.submittedUsersRace = this.selectedUsersRace ?? '';
+        this.submittedMessage = this.message.trim();
+        this.conversationHistory.push({ role: 'user', content: this.message.trim() });
+        this.message = '';
+        setTimeout(() => this.scrollToBottom(), 0);
         this.isLoading = true;
         this.error = '';
         this.reply = '';
@@ -249,20 +333,32 @@ export class WowPromptComponent implements OnDestroy {
         this.clearTyping();
 
         try {
-            const response = await firstValueFrom(
-                this.http.post<{ reply: string; race: string }>(this.apiUrl, {
-                    message: this.message,
-                    style: this.selectedStyle,
-                    ...(this.selectedStyle === 'specific'
-                        ? { character: this.selectedCharacter }
-                        : { race: this.selectedCharacter }),
-                    ...(this.selectedUsersRace && { usersRace: this.selectedUsersRace }),
-                }),
-            );
-            this.reply = response.reply;
-            this.typeOut(response.reply);
+            let replyText: string;
+
+            if (this.debugMode) {
+                await new Promise(resolve => setTimeout(resolve, 1200));
+                replyText = this.mockReplies[Math.floor(Math.random() * this.mockReplies.length)];
+            } else {
+                const response = await firstValueFrom(
+                    this.http.post<{ reply: string; race: string }>(this.apiUrl, {
+                        style: this.selectedStyle,
+                        messages: this.conversationHistory,
+                        ...(this.selectedStyle === 'specific'
+                            ? { character: this.selectedCharacter }
+                            : { race: this.selectedCharacter }),
+                        ...(this.selectedUsersRace && { usersRace: this.selectedUsersRace }),
+                    }),
+                );
+                replyText = response.reply;
+            }
+
+            this.reply = replyText;
+            this.isConversationActive = true;
+            this.typeOut(replyText);
         } catch {
             this.error = 'Something went wrong. Please try again.';
+            this.conversationHistory.pop();
+            this.message = this.submittedMessage;
         } finally {
             this.isLoading = false;
         }

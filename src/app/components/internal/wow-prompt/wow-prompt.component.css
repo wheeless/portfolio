@@ -72,6 +72,27 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 1.5em;
+    scrollbar-width: thin;
+    scrollbar-color: #c8a84b #1a1a1a;
+}
+
+.response-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.response-panel::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 3px;
+}
+
+.response-panel::-webkit-scrollbar-thumb {
+    background: #5a4520;
+    border-radius: 3px;
+    border: 1px solid #3a2d0a;
+}
+
+.response-panel::-webkit-scrollbar-thumb:hover {
+    background: #c8a84b;
 }
 
 .prompt-form {
@@ -169,7 +190,9 @@ button {
     border-radius: 4px;
     font-size: 1em;
     cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease;
     align-self: flex-start;
 }
 
@@ -248,6 +271,86 @@ button:disabled {
     }
 }
 
+.conversation-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 0.75em 1em;
+    border: 1px solid #5a4520;
+    border-radius: 4px;
+    background: rgba(90, 69, 32, 0.15) !important;
+}
+
+.conversation-context {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: #c8a84b;
+    letter-spacing: 0.05em;
+}
+
+.reset-btn {
+    background-color: transparent !important;
+    color: #888;
+    border: 1px solid #444;
+    padding: 0.35em 0.85em;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.reset-btn:hover {
+    background-color: transparent !important;
+    color: #e0e0e0;
+    border-color: #888;
+}
+
+.user-message {
+    padding: 0.75em 1em;
+    border-left: 2px solid #444;
+    border-radius: 0 4px 4px 0;
+    background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.thread-label {
+    font-size: 0.72em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #666;
+    margin-bottom: 0.3em;
+}
+
+.thread-text {
+    color: #c8c8c8;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.download-btn {
+    background-color: transparent !important;
+    color: #c8a84b;
+    border: 1px solid #5a4520;
+    padding: 0.5em 1.25em;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    align-self: flex-start;
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.download-btn:hover {
+    background-color: transparent !important;
+    border-color: #c8a84b;
+    color: #f0d090;
+}
+
 .back-link {
     color: #aaa;
     text-decoration: none;
@@ -277,8 +380,10 @@ button:disabled {
     .content.has-response .response-panel {
         flex: 1;
         min-width: 0;
-        position: sticky;
-        top: 2em;
+        min-height: 0;
+        height: calc(100vh - 600px);
+        overflow-y: auto;
+        padding-right: 0.5em;
     }
 }
 
