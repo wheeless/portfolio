@@ -24,6 +24,7 @@ export class SelectComponent implements OnChanges {
     @Input() groups: SelectGroup[] = [];
     @Input() placeholder = 'Select an option';
     @Input() searchThreshold = 5;
+    @Input() value: string | null = null;
 
     @Output() selectionChange = new EventEmitter<string | null>();
 
@@ -68,6 +69,9 @@ export class SelectComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['groups']) {
             this.groupsSignal.set(this.groups ?? []);
+        }
+        if (changes['value']) {
+            this.selectedValue.set(this.value);
         }
     }
 

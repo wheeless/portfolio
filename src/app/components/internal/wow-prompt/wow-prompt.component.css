@@ -94,6 +94,35 @@ label {
     font-size: 0.9em;
 }
 
+.style-select {
+    width: 100%;
+    padding: 0.75em;
+    padding-right: 2.5em;
+    border: 2px solid #444;
+    border-radius: 4px;
+    background: #1a1a1a;
+    color: #e0e0e0;
+    font-size: 1em;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23aaa' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75em center;
+    background-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.style-select:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.style-select option {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
 textarea {
     width: 100%;
     padding: 0.75em;

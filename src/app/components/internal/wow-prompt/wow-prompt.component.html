@@ -31,20 +31,35 @@
                     </div>
 
                     <div class="form-group">
-                        <label
-                            >You are speaking to a...
-                            <span class="required-star">*</span></label
+                        <label>Style</label>
+                        <select
+                            class="style-select"
+                            [(ngModel)]="selectedStyle"
+                            name="style"
+                            aria-label="Response style"
+                            (ngModelChange)="onStyleChange()"
                         >
+                            <option value="default">Generic Races</option>
+                            <option value="specific">Notable NPCs</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            {{ selectedStyle === 'specific' ? 'You are speaking to...' : 'You are speaking to a...' }}
+                            <span class="required-star">*</span>
+                        </label>
                         <app-select
-                            [groups]="raceGroups"
-                            placeholder="Select a race"
-                            (selectionChange)="onRaceChange($event)"
+                            [groups]="targetGroups"
+                            [value]="selectedCharacter"
+                            [placeholder]="selectedStyle === 'specific' ? 'Select a character' : 'Select a race'"
+                            (selectionChange)="onCharacterChange($event)"
                         />
                     </div>
 
                     <div class="form-group">
                         <label for="message"
-                            >Your prompt <span class="required-star">*</span></label
+                            >{{ promptLabel }} <span class="required-star">*</span></label
                         >
                         <textarea
                             id="message"
@@ -77,7 +92,7 @@
                 }
                 @if (isLoading) {
                     <div class="thinking-box" role="status" aria-live="polite">
-                        <p class="thinking-text">The {{ thinkingRace }} is thinking...</p>
+                        <p class="thinking-text">{{ thinkingText }}</p>
                     </div>
                 }
                 @if (displayedReply) {
@@ -87,7 +102,7 @@
                         aria-label="Generated reply"
                         aria-live="polite"
                     >
-                        <h2 class="reply-heading">The {{ race }} Speaks:</h2>
+                        <h2 class="reply-heading">{{ speaksPrefix }}{{ submittedCharacter }} Speaks:</h2>
                         <p class="wow-text" [class.wow-cursor]="isTyping">{{ displayedReply }}</p>
                     </div>
                 }
