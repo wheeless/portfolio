@@ -13,6 +13,7 @@
 .project-card-link {
     text-decoration: none;
     color: inherit;
+    display: flex;
 }
 
 .project-card {
@@ -24,6 +25,9 @@
     transition: transform 0.2s ease-in-out, filter 0.3s ease-in-out;
     max-width: 378px;
     will-change: transform, filter;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .project-card:hover {
@@ -41,6 +45,9 @@
 
 .project-content {
     padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-content h2 {

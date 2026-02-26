@@ -1,7 +1,6 @@
 <main class="page" role="main">
-    <div class="content">
+    <div class="content" [class.has-response]="isLoading || !!displayedReply || !!error">
         <div class="header">
-            <!-- Place a WoW logo (e.g. wow-logo.png) in the public/ folder to serve it here -->
             <img
                 src="https://blz-contentstack-images.akamaized.net/v3/assets/blt3452e3b114fab0cd/blte82ef8135378a09b/5d4883cabf384b03afd01553/Logo-wow.png?imwidth=828"
                 alt="World of Warcraft"
@@ -14,55 +13,86 @@
             </p>
         </div>
 
-        <form class="prompt-form" (ngSubmit)="submit()" role="form" aria-label="WoW prompt form">
-            <div class="form-group">
-                <label>You are speaking to a... <span class="optional">(optional)</span></label>
-                <app-select
-                    [groups]="raceGroups"
-                    placeholder="Select a race"
-                    (selectionChange)="onRaceChange($event)"
-                />
+        <div class="layout">
+            <div class="form-panel">
+                <form
+                    class="prompt-form"
+                    (ngSubmit)="submit()"
+                    role="form"
+                    aria-label="WoW prompt form"
+                >
+                    <div class="form-group">
+                        <label>You are a... <span class="required-star">*</span></label>
+                        <app-select
+                            [groups]="raceGroups"
+                            placeholder="Select your race"
+                            (selectionChange)="onUsersRaceChange($event)"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label
+                            >You are speaking to a...
+                            <span class="required-star">*</span></label
+                        >
+                        <app-select
+                            [groups]="raceGroups"
+                            placeholder="Select a race"
+                            (selectionChange)="onRaceChange($event)"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message"
+                            >Your prompt <span class="required-star">*</span></label
+                        >
+                        <textarea
+                            id="message"
+                            [(ngModel)]="message"
+                            name="message"
+                            rows="4"
+                            placeholder="e.g. What does the Lich King think of Tuesdays?"
+                            aria-required="true"
+                        ></textarea>
+                    </div>
+
+                    <div class="button-row">
+                        <button
+                            type="submit"
+                            [disabled]="isLoading"
+                            aria-label="Generate WoW prompt"
+                        >
+                            {{ isLoading ? 'Generating...' : 'Generate' }}
+                        </button>
+                        @if (validationError) {
+                            <span class="validation-error" role="alert">{{ validationError }}</span>
+                        }
+                    </div>
+                </form>
             </div>
 
-            <div class="form-group">
-                <label>And you are... <span class="optional">(optional)</span></label>
-                <app-select
-                    [groups]="raceGroups"
-                    placeholder="Select your race"
-                    (selectionChange)="onUsersRaceChange($event)"
-                />
+            <div class="response-panel">
+                @if (error) {
+                    <div class="error-message" role="alert" aria-live="polite">{{ error }}</div>
+                }
+                @if (isLoading) {
+                    <div class="thinking-box" role="status" aria-live="polite">
+                        <p class="thinking-text">The {{ thinkingRace }} is thinking...</p>
+                    </div>
+                }
+                @if (displayedReply) {
+                    <div
+                        class="reply-box"
+                        role="region"
+                        aria-label="Generated reply"
+                        aria-live="polite"
+                    >
+                        <h2 class="reply-heading">The {{ race }} Speaks:</h2>
+                        <p class="wow-text" [class.wow-cursor]="isTyping">{{ displayedReply }}</p>
+                    </div>
+                }
             </div>
-
-            <div class="form-group">
-                <label for="message">Your prompt</label>
-                <textarea
-                    id="message"
-                    [(ngModel)]="message"
-                    name="message"
-                    rows="4"
-                    placeholder="e.g. What doth the Lich King think of Tuesdays?"
-                    aria-required="true"
-                ></textarea>
-            </div>
-
-            <button
-                type="submit"
-                [disabled]="isLoading || !message.trim()"
-                aria-label="Generate WoW prompt"
-            >
-                {{ isLoading ? 'Generating...' : 'Generate' }}
-            </button>
-        </form>
-
-        @if (error) {
-            <div class="error-message" role="alert" aria-live="polite">{{ error }}</div>
-        }
-        @if (reply) {
-            <div class="reply-box" role="region" aria-label="Generated reply" aria-live="polite">
-                <h2>The {{ race }} Speaks:</h2>
-                <p>{{ reply }}</p>
-            </div>
-        }
+        </div>
 
         <a routerLink="/projects" class="back-link" aria-label="Back to projects">
             ← Back to Projects

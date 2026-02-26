@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -13,15 +13,24 @@ import { SelectGroup } from '../../core/interfaces/select.interfaces';
     templateUrl: './wow-prompt.component.html',
     styleUrl: './wow-prompt.component.css',
 })
-export class WowPromptComponent {
+export class WowPromptComponent implements OnDestroy {
     message = '';
     reply = '';
     race = '';
     isLoading = false;
     error = '';
+    displayedReply = '';
+    isTyping = false;
+    validationError = '';
 
     selectedRace: string | null = null;
     selectedUsersRace: string | null = null;
+
+    private typingInterval: ReturnType<typeof setInterval> | null = null;
+
+    get thinkingRace(): string {
+        return this.selectedRace ?? 'Azeroth';
+    }
 
     readonly raceGroups: SelectGroup[] = [
         {
@@ -69,6 +78,32 @@ export class WowPromptComponent {
 
     constructor(private http: HttpClient) {}
 
+    ngOnDestroy(): void {
+        this.clearTyping();
+    }
+
+    private clearTyping(): void {
+        if (this.typingInterval) {
+            clearInterval(this.typingInterval);
+            this.typingInterval = null;
+        }
+    }
+
+    private typeOut(text: string): void {
+        this.clearTyping();
+        this.displayedReply = '';
+        this.isTyping = true;
+        let i = 0;
+        this.typingInterval = setInterval(() => {
+            if (i < text.length) {
+                this.displayedReply += text[i++];
+            } else {
+                this.clearTyping();
+                this.isTyping = false;
+            }
+        }, 25);
+    }
+
     onRaceChange(value: string | null): void {
         this.selectedRace = value;
     }
@@ -78,11 +113,17 @@ export class WowPromptComponent {
     }
 
     async submit() {
-        if (!this.message.trim()) return;
+        if (!this.selectedUsersRace || !this.selectedRace || !this.message.trim()) {
+            this.validationError = 'Please fill in all required fields.';
+            return;
+        }
 
+        this.validationError = '';
         this.isLoading = true;
         this.error = '';
         this.reply = '';
+        this.displayedReply = '';
+        this.clearTyping();
 
         try {
             const response = await firstValueFrom(
@@ -94,6 +135,7 @@ export class WowPromptComponent {
             );
             this.reply = response.reply;
             this.race = response.race;
+            this.typeOut(response.reply);
         } catch {
             this.error = 'Something went wrong. Please try again.';
         } finally {
