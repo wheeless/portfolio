@@ -205,6 +205,7 @@ export class WowPromptComponent implements OnDestroy {
 
     readonly promptLabel = this.promptLabels[Math.floor(Math.random() * this.promptLabels.length)];
 
+    readonly version = '1.0';
     debugMode = false;
 
     private readonly mockReplies = [
