@@ -61,7 +61,7 @@ export class ProjectsService {
         },
         {
             name: 'Avernix Technologies',
-            description: 'Homepage for my software company.',
+            description: 'Homepage for Avernix Technologies.',
             longDescription:
                 'Avernix Technologies is a software company that I founded in 2023. I started the company with the goal of providing high-quality software solutions to businesses and individuals alike. Over the years, I have worked with a variety of clients, from small businesses to large corporations, and I have gained a wealth of experience in the software development industry. Our homepage utilizes Next.js, React, Tailwind CSS, and becomes a full-stack application with a home-built REST API.',
             image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/10fdbb1f-506c-40c2-5a2c-6d68e735e600/public',
