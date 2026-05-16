@@ -22,7 +22,10 @@ export class ExternalRouteService {
 
     private categoryMap: { [key: string]: Map<string, string> };
 
-    constructor(private appRef: ApplicationRef, private projectsService: ProjectsService) {
+    constructor(
+        private appRef: ApplicationRef,
+        private projectsService: ProjectsService,
+    ) {
         this.projects = new Map(
             this.projectsService
                 .getAllProjects()

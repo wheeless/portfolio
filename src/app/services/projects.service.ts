@@ -8,6 +8,39 @@ import { Project } from '../components/core/interfaces/project.interface';
 export class ProjectsService {
     private readonly projects: Project[] = [
         {
+            name: 'whereami',
+            description: 'Simple geolocation API, with weather!',
+            longDescription: `whereami is a zero-auth, no-setup geo-IP API built on Cloudflare's edge network. Hit any endpoint and get
+							back your public IP, geolocation (city, region, country, coordinates, timezone, continent), ASN/ISP info,
+							and the Cloudflare datacenter your request landed on — no API key, no account, no rate limits.
+							Responses come in whatever format you need: JSON, YAML, XML, plain text key-value pairs, or just the raw IP
+							as a string. There's also a /headers endpoint that echoes all your request headers back as JSON, useful
+							for debugging proxies and CDN setups, and a /weather endpoint that uses your location to pull current
+							conditions from Open-Meteo.
+							All data is read-once — nothing is logged, stored, or tracked. Every route is CORS-open and ships with
+							Cache-Control: no-store, so it's safe to call from a browser or script without any preflight ceremony.`,
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/0561426e-566e-4b5c-fe31-87eca6bee400/public',
+            link: 'https://whereami.kylewheeless.com',
+            tags: ['Next.js', 'React', 'Geolocation', 'Cloudflare', 'CI/CD'] as ProjectTag[],
+        },
+        {
+            name: 'Lich Souls Gaming',
+            description:
+                'Website, game servers, discord bot, and more. Most of the functionality is server-side.',
+            longDescription:
+                'Lich Souls Gaming is a gaming community founded in 2006. The website was built in 2023/2024 and rebuilt in 2026, it is built with NextJS, TypeScript, and utilizes a custom REST API to fetch and update data. The Discord bot is built with Node.js, and utilizes the Discord.js library. The game servers are hosted with Linux, and utilize a custom-built game server management system.',
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/c8013b30-459c-4e09-5be2-2705460e1100/public',
+            link: 'https://lichsouls.com/',
+            tags: [
+                'Next.js',
+                'TypeScript',
+                'Discord.js',
+                'Node.js',
+                'Full Stack',
+                'SQL',
+            ] as ProjectTag[],
+        },
+        {
             name: 'Azeroth Speaks',
             description: 'Choose a WoW race and ask your question — powered by Claude AI.',
             longDescription:
@@ -15,6 +48,16 @@ export class ProjectsService {
             image: 'https://blz-contentstack-images.akamaized.net/v3/assets/blt3452e3b114fab0cd/blte82ef8135378a09b/5d4883cabf384b03afd01553/Logo-wow.png?imwidth=828',
             internalLink: '/hosted/wow-prompt',
             tags: ['TypeScript', 'Angular', 'API', 'Full Stack'] as ProjectTag[],
+        },
+        {
+            name: 'Frankie Goldie',
+            description:
+                'Website to display all of the authors books, links to purchase, and more.',
+            longDescription:
+                'Frankie Goldie is a website built with Angular, TypeScript, and utilizes a REST API to fetch and update data. The website is designed to be user-friendly and efficient, utilizing Avernix Technologies home-built form-to-email REST API. The website is hosted with Cloudflare, and utilizes Firebase Firestore and Firebase Functions. This includes a fully custom-built admin dashboard for managing the website.',
+            image: 'https://avernix.com/cdn-cgi/imagedelivery/eFpPUO445KI7hjnFeTxrJQ/a8eaa2d4-9d9a-42c4-a837-bbdbe0437d00/public',
+            link: 'https://frankiegoldieandfriends.com',
+            tags: ['Angular', 'REST API', 'Business', 'Firebase', 'Full Stack'] as ProjectTag[],
         },
         {
             name: 'Avernix Technologies',
@@ -26,13 +69,21 @@ export class ProjectsService {
             tags: ['Next.js', 'React', 'Business', 'Full Stack'] as ProjectTag[],
         },
         {
-            name: 'Avernix Technologies Client Portal',
-            description: 'A portal for clients to view their respective services.',
-            longDescription:
-                'The client portal is a platform that allows clients to view and manage their respective services. It is built with Angular, TypeScript, and utilizes a REST API to fetch and update data. The portal is designed to be user-friendly and efficient, allowing clients to quickly and easily access the information they need.',
-            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public',
-            link: 'https://client.avernix.com',
-            tags: ['Angular', 'TypeScript', 'Business', 'REST API', 'Full Stack'] as ProjectTag[],
+            name: 'Crunchy Bread',
+            description: 'A way for teams to quickly have their daily standup meetings.',
+            longDescription: `Crunchy Bread is a web application designed to facilitate daily standup meetings for teams. Built with Next.js, React, and TypeScript, it offers an intuitive interface for time-boxing team standup updates. The application runs entirely client-side with
+								no backend required, making it lightweight and privacy-focused.
+								With features like customizable timers, visual progress tracking
+								with toast emojis (🍞✨ for perfect, 🍞⏰ for close, 🍞🔥 for
+								overtime), and downloadable summary reports, Crunchy Bread helps
+								teams stay focused and on-time. The application supports three
+								main modes: Named Mode with draggable participant lists and
+								note-taking, Quick Count Mode for anonymous participants with
+								just a head count, and Free-for-All Mode with continuous rolling
+								timers for open-ended standups.`,
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/5abe8a91-4627-428f-3cdb-6d24b6284500/public',
+            link: 'https://crunchybread.io',
+            tags: ['React', 'TypeScript', 'Productivity', 'Next.js', 'Full Stack'] as ProjectTag[],
         },
         {
             name: 'NonPro AdCo',
@@ -44,48 +95,13 @@ export class ProjectsService {
             tags: ['Next.js', 'React', 'Business', 'REST API', 'Full Stack'] as ProjectTag[],
         },
         {
-            name: 'Lich Souls Gaming',
-            description:
-                'Website, game servers, discord bot, and more. Most of the functionality is server-side.',
+            name: 'Avernix Technologies Client Portal',
+            description: 'A portal for clients to view their respective services.',
             longDescription:
-                'Lich Souls Gaming is a gaming community founded in 2006. The website was built in 2023/2024, and it is built with Angular, TypeScript, and utilizes a custom REST API to fetch and update data. The Discord bot is built with Node.js, and utilizes the Discord.js library. The game servers are hosted with Linux, and utilize a custom-built game server management system.',
-            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/c8013b30-459c-4e09-5be2-2705460e1100/public',
-            link: 'https://lichsouls.com/dice',
-            tags: [
-                'Angular',
-                'TypeScript',
-                'Discord.js',
-                'Node.js',
-                'Full Stack',
-                'SQL',
-            ] as ProjectTag[],
-        },
-        {
-            name: 'Crunchy Bread',
-            description: 'A way for teams to quickly have their daily standup meetings.',
-            longDescription: `Crunchy Bread is a web application designed to facilitate daily standup meetings for teams. Built with Next.js, React, and TypeScript, it offers an intuitive interface for time-boxing team standup updates. The application runs entirely client-side with
-  no backend required, making it lightweight and privacy-focused.
-  With features like customizable timers, visual progress tracking
-  with toast emojis (🍞✨ for perfect, 🍞⏰ for close, 🍞🔥 for
-  overtime), and downloadable summary reports, Crunchy Bread helps
-  teams stay focused and on-time. The application supports three
-  main modes: Named Mode with draggable participant lists and
-  note-taking, Quick Count Mode for anonymous participants with
-  just a head count, and Free-for-All Mode with continuous rolling
-  timers for open-ended standups.`,
-            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/5abe8a91-4627-428f-3cdb-6d24b6284500/public',
-            link: 'https://crunchybread.io',
-            tags: ['React', 'TypeScript', 'Productivity', 'Next.js', 'Full Stack'] as ProjectTag[],
-        },
-        {
-            name: 'Frankie Goldie',
-            description:
-                'Website to display all of the authors books, links to purchase, and more.',
-            longDescription:
-                'Frankie Goldie is a website built with Angular, TypeScript, and utilizes a REST API to fetch and update data. The website is designed to be user-friendly and efficient, utilizing Avernix Technologies home-built form-to-email REST API. The website is hosted with Cloudflare, and utilizes Firebase Firestore and Firebase Functions. This includes a fully custom-built admin dashboard for managing the website.',
-            image: 'https://avernix.com/cdn-cgi/imagedelivery/eFpPUO445KI7hjnFeTxrJQ/a8eaa2d4-9d9a-42c4-a837-bbdbe0437d00/public',
-            link: 'https://frankiegoldieandfriends.com',
-            tags: ['Angular', 'REST API', 'Business', 'Firebase', 'Full Stack'] as ProjectTag[],
+                'The client portal is a platform that allows clients to view and manage their respective services. It is built with Angular, TypeScript, and utilizes a REST API to fetch and update data. The portal is designed to be user-friendly and efficient, allowing clients to quickly and easily access the information they need.',
+            image: 'https://imagedelivery.net/eFpPUO445KI7hjnFeTxrJQ/f8a1973b-bd9b-4259-3e29-c4116bcc0200/public',
+            link: 'https://client.avernix.com',
+            tags: ['Angular', 'TypeScript', 'Business', 'REST API', 'Full Stack'] as ProjectTag[],
         },
         {
             name: 'Blackfox Gaming',
