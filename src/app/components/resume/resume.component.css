@@ -1,0 +1,337 @@
+.page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 20px 60px;
+}
+
+/* ── BACK LINK ── */
+.back-link {
+    display: inline-block;
+    font-size: 0.82rem;
+    color: #aaa;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: #f6f6f6;
+}
+
+/* ── HEADER ── */
+.resume-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+    gap: 20px;
+}
+
+.name-block h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+}
+
+.name-block h2 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #aaa;
+    margin-top: 6px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.contact-block {
+    text-align: right;
+    font-size: 0.78rem;
+    color: #aaa;
+    line-height: 1.9;
+}
+
+.contact-block a {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-block a:hover {
+    color: #f6f6f6;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 7px 16px;
+    background: #333;
+    border: 1px solid #666;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    color: #f6f6f6;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.download-btn:hover {
+    background: #444;
+    border-color: #ccc;
+    color: #f6f6f6;
+}
+
+/* ── SECTIONS ── */
+section {
+    margin-bottom: 26px;
+}
+
+.section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #aaa;
+    border-bottom: 1px solid #333;
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+}
+
+/* ── SUMMARY ── */
+.summary {
+    font-size: 0.88rem;
+    color: #ccc;
+    line-height: 1.7;
+}
+
+/* ── SKILLS ── */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px 24px;
+}
+
+.skill-category-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    color: #777;
+    margin-bottom: 6px;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.skill-tag {
+    background: #2e2e2e;
+    border: 1px solid #555;
+    color: #ccc;
+    padding: 3px 9px;
+    border-radius: 3px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.skill-tag:hover {
+    border-color: #999;
+    color: #f6f6f6;
+}
+
+/* ── ENTRIES ── */
+.entry {
+    margin-bottom: 18px;
+}
+
+.entry:last-child {
+    margin-bottom: 0;
+}
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.entry-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f6f6f6;
+}
+
+.entry-title a {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.entry-title a:hover {
+    color: #f6f6f6;
+}
+
+.entry-date {
+    font-size: 0.75rem;
+    color: #777;
+    white-space: nowrap;
+}
+
+.entry-subtitle {
+    font-size: 0.82rem;
+    color: #aaa;
+    font-style: italic;
+    margin-top: 2px;
+    margin-bottom: 8px;
+}
+
+.entry-bullets {
+    list-style: none;
+    padding: 0;
+}
+
+.entry-bullets li {
+    font-size: 0.84rem;
+    color: #ccc;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 4px;
+    line-height: 1.6;
+}
+
+.entry-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #777;
+    font-size: 0.7rem;
+    top: 3px;
+}
+
+/* ── EDUCATION ── */
+.edu-desc {
+    font-size: 0.82rem;
+    color: #888;
+    margin-top: 4px;
+}
+
+/* ── CERTIFICATIONS ── */
+.cert-row {
+    font-size: 0.88rem;
+    color: #ccc;
+}
+
+.cert-issuer {
+    color: #777;
+    font-size: 0.84rem;
+}
+
+/* ── REFERENCES ── */
+.references-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.reference-card {
+    background: #2a2a2a;
+    border-left: 3px solid #555;
+    padding: 12px 14px;
+    border-radius: 0 4px 4px 0;
+    transition: border-color 0.2s ease;
+}
+
+.reference-card:hover {
+    border-left-color: #aaa;
+}
+
+.reference-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: #f6f6f6;
+}
+
+.reference-detail {
+    font-size: 0.78rem;
+    color: #888;
+    margin-top: 4px;
+    line-height: 1.7;
+}
+
+/* ── FOOTER NAV ── */
+.footer-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+
+.footer-nav a {
+    font-size: 0.82rem;
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+    color: #f6f6f6;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .page {
+        padding: 48px 20px 40px;
+    }
+
+    .resume-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .header-right {
+        align-items: flex-start;
+    }
+
+    .contact-block {
+        text-align: left;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .references-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .name-block h1 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .entry-header {
+        flex-direction: column;
+        gap: 2px;
+    }
+}

@@ -9,6 +9,7 @@ import { InternalErrorComponent } from './components/core/internal-error/interna
 import { ComingSoonComponent } from './components/core/coming-soon/coming-soon.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
 import { WowPromptComponent } from './components/internal/wow-prompt/wow-prompt.component';
+import { ResumeComponent } from './components/resume/resume.component';
 
 export const routes: Routes = [
     {
@@ -39,6 +40,10 @@ export const routes: Routes = [
     {
         path: 'contact',
         component: ContactComponent,
+    },
+    {
+        path: 'resume',
+        component: ResumeComponent,
     },
     {
         path: 'services',

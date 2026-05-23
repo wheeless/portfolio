@@ -1,0 +1,222 @@
+<main class="page" role="main">
+
+    <a routerLink="/" class="back-link" aria-label="Back to home">← Back to Home</a>
+
+    <div class="resume-header">
+        <div class="name-block">
+            <h1>Kyle Wheeless</h1>
+            <h2>Software Engineer &nbsp;|&nbsp; Cloud &amp; Full Stack</h2>
+        </div>
+        <div class="header-right">
+            <div class="contact-block">
+                <span>Lebanon, Oregon &nbsp;·&nbsp; 541-913-1060</span><br>
+                <a href="mailto:me@kylewheeless.com" aria-label="Send email to Kyle">me&#64;kylewheeless.com</a><br>
+                <a href="https://www.linkedin.com/in/kylewheeless" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">linkedin.com/in/kylewheeless</a><br>
+                <a href="https://github.com/wheeless" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">github.com/wheeless</a>
+            </div>
+            <a
+                [href]="pdfUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="download-btn"
+                aria-label="Download resume as PDF (opens in new tab)"
+                download="Kyle_Wheeless_Resume.pdf"
+            >
+                &#8595; Download PDF
+            </a>
+        </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <section aria-labelledby="summary-heading">
+        <h3 id="summary-heading" class="section-title">Summary</h3>
+        <p class="summary">
+            Full-stack software engineer with 7+ years of experience designing and shipping production systems across cloud, web, and API layers.
+            Currently building distributed, AWS-native backend architecture at Esquire Deposition Solutions using NestJS, SQS, DynamoDB, and WebSockets.
+            Deep hands-on experience with Terraform infrastructure, Next.js frontends, and Cloudflare's edge platform.
+            Strong background in technical mentorship and leading teams through curriculum and workflow development.
+        </p>
+    </section>
+
+    <!-- SKILLS -->
+    <section aria-labelledby="skills-heading">
+        <h3 id="skills-heading" class="section-title">Technical Skills</h3>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <div class="skill-category-title">Languages &amp; Frameworks</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">NestJS</span>
+                    <span class="skill-tag">Next.js</span>
+                    <span class="skill-tag">Express.js</span>
+                    <span class="skill-tag">Angular</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-category-title">AWS</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">DynamoDB</span>
+                    <span class="skill-tag">S3</span>
+                    <span class="skill-tag">SQS</span>
+                    <span class="skill-tag">API Gateway</span>
+                    <span class="skill-tag">VPC</span>
+                    <span class="skill-tag">NLB / ALB</span>
+                    <span class="skill-tag">EC2</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-category-title">Cloudflare &amp; Edge</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Workers</span>
+                    <span class="skill-tag">Pages</span>
+                    <span class="skill-tag">D1</span>
+                    <span class="skill-tag">R2</span>
+                    <span class="skill-tag">Wrangler</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-category-title">Infrastructure &amp; Data</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Terraform</span>
+                    <span class="skill-tag">WebSockets</span>
+                    <span class="skill-tag">REST</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">NoSQL</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-category-title">Dev &amp; Workflow</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">GitHub Actions</span>
+                    <span class="skill-tag">CI/CD</span>
+                    <span class="skill-tag">OpenNext</span>
+                    <span class="skill-tag">NextAuth</span>
+                    <span class="skill-tag">Agile</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section aria-labelledby="experience-heading">
+        <h3 id="experience-heading" class="section-title">Work Experience</h3>
+
+        <article class="entry">
+            <div class="entry-header">
+                <span class="entry-title">Software Engineer</span>
+                <span class="entry-date">August 2022 – Present</span>
+            </div>
+            <div class="entry-subtitle">Esquire Deposition Solutions — Remote</div>
+            <ul class="entry-bullets">
+                <li>Architected and built an internal operations platform for scheduling deposition jobs, managing case files, and processing invoices.</li>
+                <li>Slashed job creation time from 45–90 seconds to a sub-1-second queued submit with 15-second background finalization by redesigning the pipeline around SQS, DynamoDB, S3, and WebSockets.</li>
+                <li>Designed and deployed AWS infrastructure including API Gateway, NLB/ALB, VPC configurations, and multi-service integrations provisioned via Terraform.</li>
+                <li>Built and maintained NestJS backend services and Next.js frontend interfaces across multiple distributed systems in a production cloud environment.</li>
+                <li>Partnered with senior engineers and product stakeholders to deliver reliable, cloud-native features on tight delivery schedules.</li>
+            </ul>
+        </article>
+
+        <article class="entry">
+            <div class="entry-header">
+                <span class="entry-title">Senior Mentor</span>
+                <span class="entry-date">July 2021 – October 2022</span>
+            </div>
+            <div class="entry-subtitle">Learning Source — Scottsdale, Arizona (Remote)</div>
+            <ul class="entry-bullets">
+                <li>Led a team of mentors supporting students across Software Development, Cyber Security, and Mobile Development programs.</li>
+                <li>Responsible for training, coaching, and technically developing the mentor team to strengthen instructional quality.</li>
+                <li>Contributed to curriculum development and wrote educational content to improve student outcomes.</li>
+                <li>Facilitated cross-department video calls and applied Agile methodologies to streamline team workflows.</li>
+            </ul>
+        </article>
+
+        <article class="entry">
+            <div class="entry-header">
+                <span class="entry-title">Education Mentor</span>
+                <span class="entry-date">May 2019 – July 2021</span>
+            </div>
+            <div class="entry-subtitle">Woz U — Arizona (Remote)</div>
+            <ul class="entry-bullets">
+                <li>Directly managed the progress of 30–50+ students simultaneously across multiple program tracks.</li>
+                <li>Led weekly video code reviews to teach, explain, and demonstrate real-world programming concepts.</li>
+                <li>Provided ongoing guidance via Slack, answering coursework questions and supporting student development between sessions.</li>
+            </ul>
+        </article>
+    </section>
+
+    <!-- PROJECTS -->
+    <section aria-labelledby="projects-heading">
+        <h3 id="projects-heading" class="section-title">Projects</h3>
+
+        <article class="entry">
+            <div class="entry-header">
+                <span class="entry-title">
+                    Lich Souls Gaming &nbsp;
+                    <a href="https://lichsouls.com" target="_blank" rel="noopener noreferrer" aria-label="Visit Lich Souls Gaming (opens in new tab)">lichsouls.com</a>
+                </span>
+                <span class="entry-date">2024 – Present</span>
+            </div>
+            <div class="entry-subtitle">Gaming &amp; Streaming Community Platform</div>
+            <ul class="entry-bullets">
+                <li>Led development that took the site from a single landing page to a full-featured mini social network for a gaming and streaming company.</li>
+                <li>Built polled real-time notifications, a direct messaging system, public wall boards, and a complete friends system with follow/request flows.</li>
+                <li>Stack: Next.js with OpenNext and NextAuth, Cloudflare Workers/Pages, D1 (edge SQLite), R2 object storage, Wrangler for deployments.</li>
+                <li>Developed a custom API backend integrated with a Discord bot for cross-platform community interaction.</li>
+            </ul>
+        </article>
+    </section>
+
+    <!-- EDUCATION -->
+    <section aria-labelledby="education-heading">
+        <h3 id="education-heading" class="section-title">Education</h3>
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">Woz U — Scottsdale, Arizona</span>
+                <span class="entry-date">January 2018 – December 2019</span>
+            </div>
+            <div class="entry-subtitle">Full Stack Web Developer Certificate</div>
+            <p class="edu-desc">Node.js · Express.js · Java · Ionic · Angular · React.js · REST APIs · Agile</p>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section aria-labelledby="certs-heading">
+        <h3 id="certs-heading" class="section-title">Certifications</h3>
+        <div class="cert-row">
+            <span class="entry-title" style="font-size: 0.95rem;">Software Development Fundamentals</span>
+            <span class="cert-issuer"> — Woz U</span>
+        </div>
+    </section>
+
+    <!-- REFERENCES -->
+    <section aria-labelledby="references-heading">
+        <h3 id="references-heading" class="section-title">References</h3>
+        <div class="references-grid">
+            <div class="reference-card">
+                <div class="reference-name">James Blankenship</div>
+                <div class="reference-detail">
+                    Software Engineer<br>
+                    Esquire Deposition Solutions<br>
+                    541-730-7574
+                </div>
+            </div>
+            <div class="reference-card">
+                <div class="reference-name">Tyler Wilhelm</div>
+                <div class="reference-detail">
+                    971-400-6371
+                </div>
+            </div>
+            <div class="reference-card">
+                <div class="reference-name">Additional Reference</div>
+                <div class="reference-detail">Available upon request</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-nav">
+        <a routerLink="/" aria-label="Back to home">← Home</a>
+        <a routerLink="/projects" aria-label="View projects">Projects →</a>
+    </div>
+
+</main>
